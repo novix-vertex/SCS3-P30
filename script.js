@@ -12,6 +12,8 @@ todoTaskList = document.querySelector(".column1 .tasks");
 doingTaskList = document.querySelector(".column2 .tasks");
 doneTaskList = document.querySelector(".column3 .tasks");
 
+let dragCardId = null;
+
 let tasks = [];
 
 addBtn.addEventListener("click", () => {
@@ -37,6 +39,7 @@ addTaskBtn.addEventListener("click", () => {
     let div = document.createElement("div");
     div.setAttribute("class", `card card${tasks.length + 1}`);
     div.setAttribute("data-tid", `${task.tid}`);
+    div.setAttribute("draggable", true);
 
     let span = document.createElement("span");
     span.setAttribute("class", "tag");
@@ -76,14 +79,20 @@ function showTasks() {
         return;
     }
 
+    tasks = tasklist;
+    todoTaskList.innerHTML = "";
+    doingTaskList.innerHTML = "";
+    doneTaskList.innerHTML = "";
+
     tasklist.forEach((task, idx) => {
         let div = document.createElement("div");
         div.setAttribute("class", `card card${idx + 1}`);
         div.setAttribute("data-tid", `${task.tid}`);
+        div.setAttribute("draggable", true);
 
         let span = document.createElement("span");
         span.setAttribute("class", "tag");
-        span.textContent = "New";
+        span.textContent = task.tag;
 
         let h3 = document.createElement("h3");
         h3.setAttribute("class", "title");
@@ -102,13 +111,43 @@ function showTasks() {
         if (task.status == "done") {
             doneTaskList.append(div);
         } div.append(span, h3, p);
+
+        div.addEventListener("dragstart", (e) => {
+            dragCardId = div.dataset.tid;
+            console.log("Dragging:", dragCardId);
+        });
     });
+
     modal.classList.remove("show");
 }
+
 
 showTasks();
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+function setupDropZone(container, newStatus) {
+
+    container.addEventListener("dragover", (e) => {
+        console.log("dragover");
+        e.preventDefault();
+    })
+
+    container.addEventListener("drop", () => {
+        console.log("Dropped");
+        const task = tasks.find((t) => { return t.tid === dragCardId });
+        if (task) {
+            task.status = newStatus;
+            task.tag = (newStatus == "todo" ? "new" : (newStatus == "doing") ? "In Progress" : "Completed");
+            saveTasks();
+            showTasks();
+        }
+    })
+}
+
+setupDropZone(todoTaskList, "todo");
+setupDropZone(doingTaskList, "doing");
+setupDropZone(doneTaskList, "done");
 
