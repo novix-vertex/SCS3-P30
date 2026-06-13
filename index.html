@@ -16,7 +16,10 @@
     </header>
     <main>
         <section class="column column1">
-            <h2>To Do</h2>
+            <div class="heading">
+                <h2>To Do</h2>
+                <button id="add-todo-task">+ Add Task</button>
+            </div>
             <div class="tasks">
                 <div class="card card1">
                     <span class="tag">New</span>
@@ -39,7 +42,10 @@
             </div>
         </section>
         <section class="column column2">
-            <h2>Doing</h2>
+            <div class="heading">
+                <h2>Doing</h2>
+                <button id="add-doing-task">+ Add Task</button>
+            </div>
             <div class="tasks">
                 <div class="card card1">
                     <span class="tag">In Progress</span>
@@ -62,7 +68,10 @@
             </div>
         </section>
         <section class="column column3">
-            <h2>Done</h2>
+            <div class="heading">
+                <h2>Done</h2>
+                <button id="add-done-task">+ Add Task</button>
+            </div>
             <div class="tasks">
                 <div class="card card1">
                     <span class="tag">Completed</span>
@@ -84,6 +93,21 @@
                 </div>
             </div>
         </section>
+
+        <div class="modal" id="add-task-modal">
+            <div class="modal-content">
+                <h2>Add Task</h2>
+
+                <input type="text" id="task-title" placeholder="Task Title">
+
+                <textarea id="task-description" placeholder="Task Description"></textarea>
+
+                <div class="actions">
+                    <button id="add-task-btn">Add Task</button>
+                    <button id="cancel-task-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>

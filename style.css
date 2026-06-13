@@ -77,9 +77,34 @@ main {
     justify-content: flex-start;
 }
 
-.column h2 {
+.column .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 1rem;
+}
+
+.column .heading button {
+    text-transform: uppercase;
+    font-size: 0.87rem;
+    font-weight: 900;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+
+    background-color: var(--column-border-color1);
+    color: var(--column-background-color1);
+    border: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.column .heading button:active {
+    transform: scale(0.95);
+}
+
+.column .heading h2 {
+    width: 100%;
     color: var(--column-text-color1);
 }
 
@@ -92,6 +117,10 @@ main {
     color: var(--column-text-color1);
 }
 
+.column1 .heading button {
+    background-color: var(--column-border-color1);
+    color: var(--column-background-color1);
+}
 
 .column2 {
     background-color: var(--column-background-color2);
@@ -102,6 +131,11 @@ main {
     color: var(--column-text-color2);
 }
 
+.column2 .heading button {
+    background-color: var(--column-border-color2);
+    color: var(--column-background-color2);
+}
+
 .column3 {
     background-color: var(--column-background-color3);
     border-top: 4px solid var(--column-border-color3);
@@ -110,6 +144,12 @@ main {
 .column3 h2 {
     color: var(--column-text-color3);
 }
+
+.column3 .heading button {
+    background-color: var(--column-border-color3);
+    color: var(--column-background-color3);
+}
+
 
 .tasks {
     width: 100%;
@@ -147,7 +187,6 @@ main {
 
     background-color: var(--column-background-color1);
     color: var(--column-text-color1);
-
 }
 
 .card .title {
@@ -190,4 +229,67 @@ main {
 .column3 .card .title,
 .column3 .card .description {
     color: var(--column-text-color3);
+}
+
+.modal {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    inset: 0;
+}
+
+.modal-content {
+    width: 400px;
+    background: var(--column-background-color1);
+    padding: 20px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+input,
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    outline: 0;
+    border: none;
+    border-radius: 0.3rem;
+    color: var(--column-text-color1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.actions button {
+    text-transform: uppercase;
+    font-size: 0.87rem;
+    font-weight: 900;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+
+    background-color: var(--column-border-color1);
+    color: var(--column-background-color1);
+    border: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.actions button:active {
+    transform: scale(0.95);
 }
