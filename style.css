@@ -1,0 +1,183 @@
+@font-face {
+    font-family: nunito;
+    src: url('.//assets/fonts/Nunito-VariableFont_wght.ttf');
+}
+
+:root {
+    --background-color: #EEF3F9;
+    --header-background-color: #CBDAF9;
+    --text-color: #6983B4;
+
+    --column-text-color1: #6983B4;
+    --column-border-color1: #6983B4;
+    --column-background-color1: #CBDAF9;
+
+    --column-text-color2: #D0A276;
+    --column-border-color2: #D0A276;
+    --column-background-color2: #F9E4CF;
+
+    --column-text-color3: #3A8D5D;
+    --column-border-color3: #3A8D5D;
+    --column-background-color3: #C3F4E6;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: nunito;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    height: 2.5rem;
+    width: 100%;
+    background-color: var(--header-background-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    padding-left: 1rem;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.column {
+    height: 100%;
+    flex: 1;
+    background-color: var(--column-background-color1);
+    border-top: 3px solid var(--column-border-color1);
+    border-radius: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.column h2 {
+    width: 100%;
+    padding: 1rem;
+    color: var(--column-text-color1);
+}
+
+.column1 {
+    background-color: var(--column-background-color1);
+    border-top: 4px solid var(--column-border-color1);
+}
+
+.column1 h2 {
+    color: var(--column-text-color1);
+}
+
+
+.column2 {
+    background-color: var(--column-background-color2);
+    border-top: 4px solid var(--column-border-color2);
+}
+
+.column2 h2 {
+    color: var(--column-text-color2);
+}
+
+.column3 {
+    background-color: var(--column-background-color3);
+    border-top: 4px solid var(--column-border-color3);
+}
+
+.column3 h2 {
+    color: var(--column-text-color3);
+}
+
+.tasks {
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.card {
+    border-radius: 0.5rem;
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    background-color: var(--background-color);
+}
+
+.card .tag {
+    text-transform: uppercase;
+    font-size: 0.87rem;
+    font-weight: 900;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+
+    background-color: var(--column-background-color1);
+    color: var(--column-text-color1);
+
+}
+
+.card .title {
+    font-weight: 900;
+    color: var(--column-text-color1);
+
+}
+
+.card .description {
+    font-weight: 500;
+    color: var(--column-text-color1);
+
+}
+
+.column1 .card .tag {
+    background-color: var(--column-background-color1);
+    color: var(--column-text-color1);
+}
+.column1 .card .title, .column1 .card .description {
+    color: var(--column-text-color1);
+}
+
+.column2 .card .tag {
+    background-color: var(--column-background-color2);
+    color: var(--column-text-color2);
+}
+.column2 .card .title, .column2 .card .description {
+    color: var(--column-text-color2);
+}
+
+.column3 .card .tag {
+    background-color: var(--column-background-color3);
+    color: var(--column-text-color3);
+}
+.column3 .card .title, .column3 .card .description {
+    color: var(--column-text-color3);
+}
