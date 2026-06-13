@@ -13,6 +13,7 @@ doingTaskList = document.querySelector(".column2 .tasks");
 doneTaskList = document.querySelector(".column3 .tasks");
 
 let dragCardId = null;
+let cardId = null;
 
 let tasks = [];
 
@@ -24,6 +25,28 @@ addTaskBtn.addEventListener("click", () => {
     const title = taskTitle.value.trim();
     const description = taskDescription.value.trim();
     const status = taskStatus.value.trim();
+    console.log(cardId);
+    if (cardId) {
+        const task = tasks.find((t) => { return t.tid === cardId });
+        if (task) {
+            task.title = title;
+            task.description = description;
+            task.status = status; //can be one of these - todo, doing, done
+            task.tag = (status == "todo" ? "new" : (status == "doing") ? "In Progress" : "Completed"); //can be one of these - new, in progress, completed
+
+            saveTasks();
+            showTasks();
+            taskTitle.value = "";
+            taskDescription.value = "";
+            taskStatus.value = "todo";
+            cardId = null;
+            addTaskBtn.textContent = "Add Task";
+
+        } else {
+            alert("Task not found");
+        }
+        return;
+    }
     task = {
         "tid": "tid-" + Math.floor(Math.random() * 10000000000),
         "title": title,
@@ -67,10 +90,24 @@ addTaskBtn.addEventListener("click", () => {
     saveTasks();
     modal.classList.remove("show");
 
+    div.addEventListener("dblclick", () => {
+        modal.classList.add("show");
+        taskTitle.value = task.title;
+        taskDescription.value = task.description;
+        taskStatus.value = task.status;
+        cardId = task.tid;
+        addTaskBtn.textContent = "Update Task";
+    });
+
 });
 
 cancelTaskBtn.addEventListener("click", () => {
     modal.classList.remove("show");
+    taskTitle.value = "";
+    taskDescription.value = "";
+    taskStatus.value = "todo";
+    cardId = null;
+    addTaskBtn.textContent = "Add Task";
 });
 
 function showTasks() {
@@ -116,6 +153,16 @@ function showTasks() {
             dragCardId = div.dataset.tid;
             console.log("Dragging:", dragCardId);
         });
+
+        div.addEventListener("dblclick", () => {
+            modal.classList.add("show");
+            taskTitle.value = task.title;
+            taskDescription.value = task.description;
+            taskStatus.value = task.status;
+            cardId = task.tid;
+            addTaskBtn.textContent = "Update Task";
+        });
+
     });
 
     modal.classList.remove("show");
