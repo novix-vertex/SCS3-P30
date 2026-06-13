@@ -61,7 +61,7 @@ main {
 }
 
 .column {
-    height: 100%;
+    min-height: 100%;
     flex: 1;
     background-color: var(--column-background-color1);
     border-top: 3px solid var(--column-border-color1);
@@ -162,7 +162,9 @@ main {
     background-color: var(--column-background-color1);
     color: var(--column-text-color1);
 }
-.column1 .card .title, .column1 .card .description {
+
+.column1 .card .title,
+.column1 .card .description {
     color: var(--column-text-color1);
 }
 
@@ -170,7 +172,9 @@ main {
     background-color: var(--column-background-color2);
     color: var(--column-text-color2);
 }
-.column2 .card .title, .column2 .card .description {
+
+.column2 .card .title,
+.column2 .card .description {
     color: var(--column-text-color2);
 }
 
@@ -178,6 +182,8 @@ main {
     background-color: var(--column-background-color3);
     color: var(--column-text-color3);
 }
-.column3 .card .title, .column3 .card .description {
+
+.column3 .card .title,
+.column3 .card .description {
     color: var(--column-text-color3);
 }
