@@ -11,100 +11,52 @@
 
 <body>
     <header>
-        <i class="ri-trello-fill"></i>
-        <h3>Trello</h3>
+        <div class="header-left">
+            <i class="ri-trello-fill"></i>
+            <h3>Trello</h3>
+        </div>
+        <div class="header-right">
+            <button id="add-todo-task">+ Add Task</button>
+        </div>
+
     </header>
     <main>
         <section class="column column1">
             <div class="heading">
                 <h2>To Do</h2>
-                <button id="add-todo-task">+ Add Task</button>
             </div>
             <div class="tasks">
-                <div class="card card1">
-                    <span class="tag">New</span>
-                    <h3 class="title">Task 7</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card2">
-                    <span class="tag">New</span>
-                    <h3 class="title">Task 8</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card3">
-                    <span class="tag">New</span>
-                    <h3 class="title">Task 9</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
+
             </div>
         </section>
         <section class="column column2">
             <div class="heading">
                 <h2>Doing</h2>
-                <button id="add-doing-task">+ Add Task</button>
             </div>
             <div class="tasks">
-                <div class="card card1">
-                    <span class="tag">In Progress</span>
-                    <h3 class="title">Task 6</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card2">
-                    <span class="tag">In Progress</span>
-                    <h3 class="title">Task 5</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card3">
-                    <span class="tag">In Progress</span>
-                    <h3 class="title">Task 4</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
             </div>
         </section>
         <section class="column column3">
             <div class="heading">
                 <h2>Done</h2>
-                <button id="add-done-task">+ Add Task</button>
             </div>
             <div class="tasks">
-                <div class="card card1">
-                    <span class="tag">Completed</span>
-                    <h3 class="title">Task 3</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card2">
-                    <span class="tag">Completed</span>
-                    <h3 class="title">Task 2</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
-                <div class="card card3">
-                    <span class="tag">Completed</span>
-                    <h3 class="title">Task 1</h3>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id vel ipsam placeat
-                        animi sed explicabo soluta eaque dolores saepe et.</p>
-                </div>
             </div>
         </section>
 
         <div class="modal" id="add-task-modal">
             <div class="modal-content">
                 <h2>Add Task</h2>
-
-                <input type="text" id="task-title" placeholder="Task Title">
-
-                <textarea id="task-description" placeholder="Task Description"></textarea>
-
+                <input type="text" id="task-title" placeholder="Task Title" required>
+                <textarea id="task-description" placeholder="Task Description" required></textarea>
+                <select name="status" id="task-status">
+                    <option value="todo">To Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </select>
                 <div class="actions">
-                    <button id="add-task-btn">Add Task</button>
-                    <button id="cancel-task-btn">Cancel</button>
+                    <button id="task-add-btn">Add Task</button>
+                    <button id="task-cancel-btn">Cancel</button>
                 </div>
             </div>
         </div>
