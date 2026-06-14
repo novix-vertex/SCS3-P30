@@ -128,6 +128,15 @@ function showTasks() {
         h3.setAttribute("class", "title");
         h3.textContent = task.title;
 
+        let taskMetaDiv = document.createElement("div");
+        taskMetaDiv.setAttribute("class", "task-meta");
+
+        let taskIdInfo = document.createElement("h5");
+        taskIdInfo.textContent = task.tid;
+
+        let taskCreationInfo = document.createElement("h5");
+        taskCreationInfo.textContent = formatDate(new Date(task.createdAt));
+
         let p = document.createElement("p");
         p.setAttribute("class", "description");
         p.textContent = task.description
@@ -145,9 +154,10 @@ function showTasks() {
             doneTasks += 1;
         }
 
-        div.append(cardHead, h3, p);
+        div.append(cardHead, h3, taskMetaDiv, p);
         cardHead.append(span, cardActions);
         cardActions.append(editIcon, deleteIcon);
+        taskMetaDiv.append(taskIdInfo, taskCreationInfo);
 
         div.addEventListener("dragstart", (e) => {
             dragCardId = div.dataset.tid;
@@ -181,6 +191,12 @@ function showTasks() {
     modal.classList.remove("show");
 }
 
+function formatDate(date) {
+    return date.toLocaleString(undefined, {
+        dateStyle: "medium",
+        timeStyle: "short"
+    })
+}
 
 showTasks();
 

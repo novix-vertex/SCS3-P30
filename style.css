@@ -121,7 +121,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width: 100%;
 }
 
 .column .heading .head .total {
@@ -130,7 +130,7 @@ main {
     border-radius: 2rem;
     padding: 0.2rem 0.5rem;
     color: var(--column-text-color1);
-    width:fit-content;
+    width: fit-content;
     text-align: center;
     white-space: no-wrap;
 }
@@ -144,7 +144,8 @@ main {
     border-top: 4px solid var(--column-border-color1);
 }
 
-.column1 .heading .head h2,.column1 .heading .head .total {
+.column1 .heading .head h2,
+.column1 .heading .head .total {
     color: var(--column-text-color1);
 }
 
@@ -154,7 +155,8 @@ main {
     border-top: 4px solid var(--column-border-color2);
 }
 
-.column2 .heading .head h2,.column2 .heading .head .total {
+.column2 .heading .head h2,
+.column2 .heading .head .total {
     color: var(--column-text-color2);
 }
 
@@ -164,7 +166,8 @@ main {
     border-top: 4px solid var(--column-border-color3);
 }
 
-.column3 .heading .head h2,.column3 .heading .head .total {
+.column3 .heading .head h2,
+.column3 .heading .head .total {
     color: var(--column-text-color3);
 }
 
@@ -182,8 +185,6 @@ main {
     flex: 1;
     overflow-y: auto;
 }
-
-
 
 .card {
     border-radius: 0.5rem;
@@ -249,6 +250,15 @@ main {
 
 }
 
+.card .task-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--column-text-color1);
+    padding-bottom:0.87rem;
+}
+
 .card .description {
     font-weight: 500;
     color: var(--column-text-color1);
@@ -260,6 +270,11 @@ main {
     color: var(--column-text-color1);
 }
 
+.column1 .card .task-meta {
+    color: var(--column-text-color1);
+}
+
+
 .column1 .card .title,
 .column1 .card .description {
     color: var(--column-text-color1);
@@ -270,6 +285,10 @@ main {
     color: var(--column-text-color2);
 }
 
+.column2 .card .task-meta {
+    color: var(--column-text-color2);
+}
+
 .column2 .card .title,
 .column2 .card .description {
     color: var(--column-text-color2);
@@ -277,6 +296,10 @@ main {
 
 .column3 .card .tag {
     background-color: var(--column-background-color3);
+    color: var(--column-text-color3);
+}
+
+.column3 .card .task-meta {
     color: var(--column-text-color3);
 }
 
