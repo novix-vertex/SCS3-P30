@@ -15,6 +15,10 @@ todoTaskList = document.querySelector(".column1 .tasks");
 doingTaskList = document.querySelector(".column2 .tasks");
 doneTaskList = document.querySelector(".column3 .tasks");
 
+totalTodoTaskList = document.querySelector(".column1 .heading .head .total");
+totalDoingTaskList = document.querySelector(".column2 .heading .head .total");
+totalDoneTaskList = document.querySelector(".column3 .heading .head .total");
+
 let dragCardId = null;
 let cardId = null;
 
@@ -40,7 +44,7 @@ form.addEventListener("submit", (e) => {
             task.title = title;
             task.description = description;
             task.status = status; //can be one of these - todo, doing, done
-            task.tag = (status == "todo" ? "new" : (status == "doing") ? "In Progress" : "Completed"); //can be one of these - new, in progress, completed
+            task.tag = (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"); //can be one of these - pending, in progress, completed
 
             saveTasks();
             showTasks();
@@ -61,7 +65,7 @@ form.addEventListener("submit", (e) => {
         "title": title,
         "description": description,
         "status": status, //can be one of these - todo, doing, done
-        "tag": (status == "todo" ? "new" : (status == "doing") ? "In Progress" : "Completed"), //can be one of these - new, in progress, completed
+        "tag": (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"), //can be one of these - pending, in progress, completed
         "createdAt": Date.now()
     }
     tasks.push(task);
@@ -93,6 +97,10 @@ function showTasks() {
     todoTaskList.innerHTML = "";
     doingTaskList.innerHTML = "";
     doneTaskList.innerHTML = "";
+
+    todoTasks = 0;
+    doingTasks = 0;
+    doneTasks = 0;
 
     tasklist.forEach((task, idx) => {
         let div = document.createElement("div");
@@ -126,12 +134,15 @@ function showTasks() {
 
         if (task.status == "todo") {
             todoTaskList.append(div);
+            todoTasks += 1;
         }
         if (task.status == "doing") {
             doingTaskList.append(div);
+            doingTasks += 1;
         }
         if (task.status == "done") {
             doneTaskList.append(div);
+            doneTasks += 1;
         }
 
         div.append(cardHead, h3, p);
@@ -164,7 +175,9 @@ function showTasks() {
         })
 
     });
-
+    totalTodoTaskList.textContent = `Pending ${todoTasks > 1 ? "Tasks" : "Task"} : ${todoTasks}`;
+    totalDoingTaskList.textContent = `In Progress ${doingTasks > 1 ? "Tasks" : "Task"} : ${doingTasks}`;
+    totalDoneTaskList.textContent = `Completed ${doneTasks > 1 ? "Tasks" : "Task"} : ${doneTasks}`;
     modal.classList.remove("show");
 }
 
@@ -188,7 +201,7 @@ function setupDropZone(container, newStatus) {
         const task = tasks.find((t) => { return t.tid === dragCardId });
         if (task) {
             task.status = newStatus;
-            task.tag = (newStatus == "todo" ? "new" : (newStatus == "doing") ? "In Progress" : "Completed");
+            task.tag = (newStatus == "todo" ? "pending" : (newStatus == "doing") ? "In Progress" : "Completed");
             saveTasks();
             showTasks();
         }
