@@ -45,8 +45,9 @@
         </section>
 
         <div class="modal" id="add-task-modal">
-            <div class="modal-content">
+            <form class="modal-content">
                 <h2>Add Task</h2>
+
                 <input type="text" id="task-title" placeholder="Task Title" required>
                 <textarea id="task-description" placeholder="Task Description" required></textarea>
                 <select name="status" id="task-status">
@@ -55,10 +56,11 @@
                     <option value="done">Done</option>
                 </select>
                 <div class="actions">
-                    <button id="task-add-btn">Add Task</button>
+                    <button type="submit" id="task-add-btn">Add Task</button>
                     <button id="task-cancel-btn">Cancel</button>
                 </div>
-            </div>
+
+            </form>
         </div>
     </main>
     <script src="script.js"></script>

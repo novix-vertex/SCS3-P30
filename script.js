@@ -1,4 +1,5 @@
 modal = document.querySelector(".modal");
+form = document.querySelector(".modal-content");
 addBtn = document.querySelector(".header-right button");
 
 addTaskBtn = document.querySelector("#task-add-btn");
@@ -20,12 +21,17 @@ let tasks = [];
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
 });
-
-addTaskBtn.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     const title = taskTitle.value.trim();
     const description = taskDescription.value.trim();
     const status = taskStatus.value.trim();
-    console.log(cardId);
+
+    if (title === "" || description === "") {
+        e.preventDefault();
+        alert("Both fields are mandatory");
+        return;
+    }
     if (cardId) {
         const task = tasks.find((t) => { return t.tid === cardId });
         if (task) {
