@@ -5,6 +5,8 @@ addBtn = document.querySelector(".header-right button");
 addTaskBtn = document.querySelector("#task-add-btn");
 cancelTaskBtn = document.querySelector("#task-cancel-btn");
 
+modalHeading = document.querySelector(".modal-content h2");
+
 taskTitle = document.querySelector("#task-title");
 taskDescription = document.querySelector("#task-description");
 taskStatus = document.querySelector("#task-status");
@@ -47,13 +49,14 @@ form.addEventListener("submit", (e) => {
             taskStatus.value = "todo";
             cardId = null;
             addTaskBtn.textContent = "Add Task";
+            modalHeading.textContent = "Add Task";
 
         } else {
             alert("Task not found");
         }
         return;
     }
-    task = {
+    const task = {
         "tid": "tid-" + Math.floor(Math.random() * 10000000000),
         "title": title,
         "description": description,
@@ -70,9 +73,21 @@ form.addEventListener("submit", (e) => {
     div.setAttribute("data-tid", `${task.tid}`);
     div.setAttribute("draggable", true);
 
+    let cardHead = document.createElement("div");
+    cardHead.setAttribute("class", "card-head");
+
     let span = document.createElement("span");
     span.setAttribute("class", "tag");
     span.textContent = task.tag;
+
+    let cardActions = document.createElement("div");
+    cardActions.setAttribute("class", "card-actions");
+
+    let editIcon = document.createElement("i");
+    editIcon.setAttribute("class", "ri-edit-box-line");
+
+    let deleteIcon = document.createElement("i");
+    deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
 
     let h3 = document.createElement("h3");
     h3.setAttribute("class", "title");
@@ -91,19 +106,30 @@ form.addEventListener("submit", (e) => {
     if (task.status == "done") {
         doneTaskList.append(div);
     }
-    div.append(span, h3, p);
+    div.append(cardHead, h3, p);
+    cardHead.append(span, cardActions);
+    cardActions.append(editIcon, deleteIcon);
 
     saveTasks();
     modal.classList.remove("show");
 
-    div.addEventListener("dblclick", () => {
+    editIcon.addEventListener("click", () => {
         modal.classList.add("show");
         taskTitle.value = task.title;
         taskDescription.value = task.description;
         taskStatus.value = task.status;
         cardId = task.tid;
         addTaskBtn.textContent = "Update Task";
+        modalHeading.textContent = "Update Task";
+        console.log(cardId, task.title);
     });
+    deleteIcon.addEventListener("click", () => {
+        if (confirm("Are you sure, you want to delete this task?")) {
+            tasks = tasks.filter((t) => { return t.tid != task.tid });
+            saveTasks();
+            showTasks();
+        }
+    })
 
 });
 
@@ -114,6 +140,7 @@ cancelTaskBtn.addEventListener("click", () => {
     taskStatus.value = "todo";
     cardId = null;
     addTaskBtn.textContent = "Add Task";
+    modalHeading.textContent = "Add Task";
 });
 
 function showTasks() {
@@ -133,9 +160,21 @@ function showTasks() {
         div.setAttribute("data-tid", `${task.tid}`);
         div.setAttribute("draggable", true);
 
+        let cardHead = document.createElement("div");
+        cardHead.setAttribute("class", "card-head");
+
         let span = document.createElement("span");
         span.setAttribute("class", "tag");
         span.textContent = task.tag;
+
+        let cardActions = document.createElement("div");
+        cardActions.setAttribute("class", "card-actions");
+
+        let editIcon = document.createElement("i");
+        editIcon.setAttribute("class", "ri-edit-box-line");
+
+        let deleteIcon = document.createElement("i");
+        deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
 
         let h3 = document.createElement("h3");
         h3.setAttribute("class", "title");
@@ -153,21 +192,36 @@ function showTasks() {
         }
         if (task.status == "done") {
             doneTaskList.append(div);
-        } div.append(span, h3, p);
+        }
+
+        div.append(cardHead, h3, p);
+        cardHead.append(span, cardActions);
+        cardActions.append(editIcon, deleteIcon);
 
         div.addEventListener("dragstart", (e) => {
             dragCardId = div.dataset.tid;
             console.log("Dragging:", dragCardId);
         });
 
-        div.addEventListener("dblclick", () => {
+        editIcon.addEventListener("click", () => {
             modal.classList.add("show");
             taskTitle.value = task.title;
             taskDescription.value = task.description;
             taskStatus.value = task.status;
             cardId = task.tid;
             addTaskBtn.textContent = "Update Task";
+            modalHeading.textContent = "Update Task";
+            console.log(cardId, task.title);
+
         });
+
+        deleteIcon.addEventListener("click", () => {
+            if (confirm("Are you sure, you want to delete this task?")) {
+                tasks = tasks.filter((t) => { return t.tid != task.tid });
+                saveTasks();
+                showTasks();
+            }
+        })
 
     });
 
@@ -179,6 +233,7 @@ showTasks();
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    form.reset();
 }
 
 function setupDropZone(container, newStatus) {
