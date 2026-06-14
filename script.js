@@ -65,71 +65,11 @@ form.addEventListener("submit", (e) => {
         "createdAt": Date.now()
     }
     tasks.push(task);
-    taskTitle.value = "";
-    taskDescription.value = "";
-
-    let div = document.createElement("div");
-    div.setAttribute("class", `card card${tasks.length + 1}`);
-    div.setAttribute("data-tid", `${task.tid}`);
-    div.setAttribute("draggable", true);
-
-    let cardHead = document.createElement("div");
-    cardHead.setAttribute("class", "card-head");
-
-    let span = document.createElement("span");
-    span.setAttribute("class", "tag");
-    span.textContent = task.tag;
-
-    let cardActions = document.createElement("div");
-    cardActions.setAttribute("class", "card-actions");
-
-    let editIcon = document.createElement("i");
-    editIcon.setAttribute("class", "ri-edit-box-line");
-
-    let deleteIcon = document.createElement("i");
-    deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
-
-    let h3 = document.createElement("h3");
-    h3.setAttribute("class", "title");
-    h3.textContent = task.title;
-
-    let p = document.createElement("p");
-    p.setAttribute("class", "description");
-    p.textContent = task.description
-
-    if (task.status == "todo") {
-        todoTaskList.append(div);
-    }
-    if (task.status == "doing") {
-        doingTaskList.append(div);
-    }
-    if (task.status == "done") {
-        doneTaskList.append(div);
-    }
-    div.append(cardHead, h3, p);
-    cardHead.append(span, cardActions);
-    cardActions.append(editIcon, deleteIcon);
 
     saveTasks();
-    modal.classList.remove("show");
+    showTasks();
 
-    editIcon.addEventListener("click", () => {
-        modal.classList.add("show");
-        taskTitle.value = task.title;
-        taskDescription.value = task.description;
-        taskStatus.value = task.status;
-        cardId = task.tid;
-        addTaskBtn.textContent = "Update Task";
-        modalHeading.textContent = "Update Task";
-        console.log(cardId, task.title);
-    });
-    deleteIcon.addEventListener("click", () => {
-        if (confirm("Are you sure, you want to delete this task?")) {
-            tasks = tasks.filter((t) => { return t.tid != task.tid });
-            saveTasks();
-            showTasks();
-        }
-    })
+    modal.classList.remove("show");
 
 });
 
