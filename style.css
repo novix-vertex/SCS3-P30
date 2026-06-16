@@ -184,8 +184,8 @@ main {
 .column .heading .head .total {
     background: var(--background-color);
     border: none;
-    border-radius: 2rem;
-    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.7rem 1rem;
     color: var(--column-text-color1);
     width: fit-content;
     text-align: center;
