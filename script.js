@@ -1,3 +1,4 @@
+const body = document.body;
 
 const filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
 const addBtn = document.querySelector(".header-right #add-todo-task-btn");
@@ -30,6 +31,7 @@ let cardId = null;
 
 let tasks = [];
 
+
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
 });
@@ -47,7 +49,7 @@ clearAllBtn.addEventListener("click", () => {
 });
 
 changeThemeBtn.addEventListener("click", () => {
-    alert("change theme");
+    body.classList.toggle("dark");
 });
 
 searchInput.addEventListener("input", (e) => {
