@@ -1,26 +1,29 @@
-modal = document.querySelector(".modal");
-form = document.querySelector(".modal-content");
-filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
-addBtn = document.querySelector(".header-right #add-todo-task-btn");
-clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
-changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
 
-addTaskBtn = document.querySelector("#task-add-btn");
-cancelTaskBtn = document.querySelector("#task-cancel-btn");
+const filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
+const addBtn = document.querySelector(".header-right #add-todo-task-btn");
+const clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
+const changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
 
-modalHeading = document.querySelector(".modal-content h2");
+const searchInput = document.querySelector("#search");
 
-taskTitle = document.querySelector("#task-title");
-taskDescription = document.querySelector("#task-description");
-taskStatus = document.querySelector("#task-status");
+const addTaskBtn = document.querySelector("#task-add-btn");
+const cancelTaskBtn = document.querySelector("#task-cancel-btn");
 
-todoTaskList = document.querySelector(".column1 .tasks");
-doingTaskList = document.querySelector(".column2 .tasks");
-doneTaskList = document.querySelector(".column3 .tasks");
+const modal = document.querySelector(".modal");
+const form = document.querySelector(".modal-content");
+const modalHeading = document.querySelector(".modal-content h2");
 
-totalTodoTaskList = document.querySelector(".column1 .heading .head .total");
-totalDoingTaskList = document.querySelector(".column2 .heading .head .total");
-totalDoneTaskList = document.querySelector(".column3 .heading .head .total");
+const taskTitle = document.querySelector("#task-title");
+const taskDescription = document.querySelector("#task-description");
+const taskStatus = document.querySelector("#task-status");
+
+const todoTaskList = document.querySelector(".column1 .tasks");
+const doingTaskList = document.querySelector(".column2 .tasks");
+const doneTaskList = document.querySelector(".column3 .tasks");
+
+const totalTodoTaskList = document.querySelector(".column1 .heading .head .total");
+const totalDoingTaskList = document.querySelector(".column2 .heading .head .total");
+const totalDoneTaskList = document.querySelector(".column3 .heading .head .total");
 
 let dragCardId = null;
 let cardId = null;
@@ -46,6 +49,20 @@ clearAllBtn.addEventListener("click", () => {
 changeThemeBtn.addEventListener("click", () => {
     alert("change theme");
 });
+
+searchInput.addEventListener("input", (e) => {
+    performSearch();
+});
+
+function performSearch() {
+    const searchString = searchInput.value.trim();
+    if (searchString === "") {
+        showTasks(null);
+        return;
+    }
+    filteredTasks = tasks.filter((task) => { return (task.title).toLowerCase().includes(searchInput.value.toLowerCase()) });
+    showTasks(filteredTasks);
+}
 
 
 form.addEventListener("submit", (e) => {
@@ -108,13 +125,21 @@ cancelTaskBtn.addEventListener("click", () => {
     modalHeading.textContent = "Add Task";
 });
 
-function showTasks() {
-    const tasklist = JSON.parse(localStorage.getItem("tasks"));
-    if (!tasklist) {
-        return;
+function showTasks(list = null) {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    let tasklist = null;
+    if (list === null) {
+        tasklist = tasks;
+        if (!tasklist) {
+            return;
+        }
+        //   tasks = tasklist;
+    } else {
+        //   tasks = list;
+        tasklist = list;
     }
 
-    tasks = tasklist;
     todoTaskList.innerHTML = "";
     doingTaskList.innerHTML = "";
     doneTaskList.innerHTML = "";
@@ -193,8 +218,6 @@ function showTasks() {
             cardId = task.tid;
             addTaskBtn.textContent = "Update Task";
             modalHeading.textContent = "Update Task";
-            console.log(cardId, task.title);
-
         });
 
         deleteIcon.addEventListener("click", () => {
