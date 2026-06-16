@@ -1,6 +1,9 @@
 modal = document.querySelector(".modal");
 form = document.querySelector(".modal-content");
-addBtn = document.querySelector(".header-right button");
+filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
+addBtn = document.querySelector(".header-right #add-todo-task-btn");
+clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
+changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
 
 addTaskBtn = document.querySelector("#task-add-btn");
 cancelTaskBtn = document.querySelector("#task-cancel-btn");
@@ -27,6 +30,24 @@ let tasks = [];
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
 });
+
+filterBtn.addEventListener("click", () => {
+    alert("filter");
+});
+
+clearAllBtn.addEventListener("click", () => {
+    if (confirm("Are you sure, you want to clear all the tasks? This action can not be undone!")) {
+        tasks = [];
+        saveTasks();
+        showTasks();
+    }
+});
+
+changeThemeBtn.addEventListener("click", () => {
+    alert("change theme");
+});
+
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = taskTitle.value.trim();
