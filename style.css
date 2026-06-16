@@ -20,6 +20,10 @@
     --column-border-color3: #3A8D5D;
     --column-background-color3: #C3F4E6;
 
+    --modal-background-color: #00000080;
+
+    --card-delete-icon-color: #ff6347;
+    --card-edit-icon-color: #a8ad4d;
 }
 
 * {
@@ -259,11 +263,11 @@ main {
 }
 
 .card .card-head .card-actions .ri-edit-box-line {
-    color: rgb(168, 173, 77);
+    color: var(--card-edit-icon-color) ;
 }
 
 .card .card-head .card-actions .ri-delete-bin-6-line {
-    color: tomato;
+    color: var(--card-delete-icon-color);
 }
 
 .card .title {
@@ -335,7 +339,7 @@ main {
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: ;
     inset: 0;
 }
 
