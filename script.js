@@ -60,7 +60,7 @@ function performSearch() {
         showTasks(null);
         return;
     }
-    filteredTasks = tasks.filter((task) => { return (task.title).toLowerCase().includes(searchInput.value.toLowerCase()) });
+    filteredTasks = tasks.filter((task) => { return (task.title).toLowerCase().includes(searchInput.value.toLowerCase()) || (task.description).toLowerCase().includes(searchInput.value.toLowerCase()) });
     showTasks(filteredTasks);
 }
 
