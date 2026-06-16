@@ -339,7 +339,7 @@ main {
     display: none;
     align-items: center;
     justify-content: center;
-    background: ;
+    background: var(--modal-background-color);
     inset: 0;
 }
 
