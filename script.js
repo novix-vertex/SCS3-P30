@@ -26,6 +26,10 @@ const totalTodoTaskList = document.querySelector(".column1 .heading .head .total
 const totalDoingTaskList = document.querySelector(".column2 .heading .head .total");
 const totalDoneTaskList = document.querySelector(".column3 .heading .head .total");
 
+const filterDialog = document.querySelector(".filter-dialog");
+const filterForm = document.querySelector(".filter-content");
+const filterTaskStatus = document.querySelector("#filter-task-status");
+
 let dragCardId = null;
 let cardId = null;
 
@@ -37,7 +41,7 @@ addBtn.addEventListener("click", () => {
 });
 
 filterBtn.addEventListener("click", () => {
-    alert("filter");
+    filterDialog.classList.add("show");
 });
 
 clearAllBtn.addEventListener("click", () => {
@@ -274,3 +278,22 @@ setupDropZone(todoTaskList, "todo");
 setupDropZone(doingTaskList, "doing");
 setupDropZone(doneTaskList, "done");
 
+
+filterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    filterByStatus();
+});
+
+
+function filterByStatus() {
+    const status = filterTaskStatus.value.trim();
+    if (status === "") {
+        showTasks(null);
+        filterDialog.classList.remove("show");
+        return;
+    }
+    filteredTasks = tasks.filter((task) => { return (task.status).toLowerCase().includes(status.toLowerCase()) });
+    showTasks(filteredTasks);
+    filterDialog.classList.remove("show");
+}

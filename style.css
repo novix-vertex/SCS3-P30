@@ -365,7 +365,7 @@ main {
     color: var(--column-text-color3);
 }
 
-.modal {
+.modal,.filter-dialog {
     position: fixed;
     display: none;
     align-items: center;
@@ -374,7 +374,7 @@ main {
     inset: 0;
 }
 
-.modal-content {
+.modal-content,.filter-content {
     width: 400px;
     background: var(--column-background-color1);
     padding: 20px;
@@ -385,7 +385,7 @@ main {
     gap: 12px;
 }
 
-.modal.show {
+.modal.show,.filter-dialog.show {
     display: flex;
 }
 
@@ -432,4 +432,14 @@ textarea {
 
 .actions button:active {
     transform: scale(0.95);
+}
+
+.filter-dialog {
+    height:100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.filter-content {
+    height:100%;
 }

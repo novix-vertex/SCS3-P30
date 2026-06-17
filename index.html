@@ -16,7 +16,7 @@
             <h3>Trello</h3>
         </div>
         <div class="header-center">
-            <i class="ri-search-line"></i> 
+            <i class="ri-search-line"></i>
             <input type="search" id="search" placeholder="Enter search string">
         </div>
         <div class="header-right">
@@ -59,7 +59,7 @@
             <div class="tasks">
             </div>
         </section>
-        <div class="modal" id="add-task-modal">
+        <section class="modal" id="add-task-modal">
             <form class="modal-content" name="add-form">
                 <h2>Add Task</h2>
 
@@ -76,7 +76,22 @@
                 </div>
 
             </form>
-        </div>
+        </section>
+        <aside class="filter-dialog">
+            <form class="filter-content" name="filters-form">
+                <h2>Filters</h2>
+                <h5>Status</h5>
+                <select name="filter-task-status" id="filter-task-status">
+                    <option value="">All</option>
+                    <option value="todo">To Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </select>
+                <div class="actions">
+                    <button type="submit" id="filter-btn">Apply Filter</button>
+                </div>
+            </form>
+        </aside>
     </main>
     <script src="script.js" defer></script>
 </body>
