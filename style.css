@@ -141,12 +141,14 @@ input[type="search"]::-webkit-search-cancel-button {
 main {
     height: 92vh;
     width: 100%;
-    padding: 2rem;
+    padding: 2vw;
 
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 2rem;
+    flex-wrap: wrap;
+
 }
 
 ::-webkit-scrollbar {
@@ -365,7 +367,8 @@ main {
     color: var(--column-text-color3);
 }
 
-.modal,.filter-dialog {
+.modal,
+.filter-dialog {
     position: fixed;
     display: none;
     align-items: center;
@@ -374,7 +377,8 @@ main {
     inset: 0;
 }
 
-.modal-content,.filter-content {
+.modal-content,
+.filter-content {
     width: 400px;
     background: var(--column-background-color1);
     padding: 20px;
@@ -385,7 +389,8 @@ main {
     gap: 12px;
 }
 
-.modal.show,.filter-dialog.show {
+.modal.show,
+.filter-dialog.show {
     display: flex;
 }
 
@@ -435,11 +440,11 @@ textarea {
 }
 
 .filter-dialog {
-    height:100%;
+    height: 100%;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
 .filter-content {
-    height:100%;
+    height: 100%;
 }
