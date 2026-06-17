@@ -17,6 +17,7 @@ const modalHeading = document.querySelector(".modal-content h2");
 const taskTitle = document.querySelector("#task-title");
 const taskDescription = document.querySelector("#task-description");
 const taskStatus = document.querySelector("#task-status");
+const taskCategory = document.querySelector("#task-category");
 
 const todoTaskList = document.querySelector(".column1 .tasks");
 const doingTaskList = document.querySelector(".column2 .tasks");
@@ -28,13 +29,12 @@ const totalDoneTaskList = document.querySelector(".column3 .heading .head .total
 
 const filterDialog = document.querySelector(".filter-dialog");
 const filterForm = document.querySelector(".filter-content");
-const filterTaskStatus = document.querySelector("#filter-task-status");
+const filterTaskCategory = document.querySelector("#filter-task-category");
 
 let dragCardId = null;
 let cardId = null;
 
 let tasks = [];
-
 
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
@@ -76,6 +76,7 @@ form.addEventListener("submit", (e) => {
     const title = taskTitle.value.trim();
     const description = taskDescription.value.trim();
     const status = taskStatus.value.trim();
+    const category = taskCategory.value.trim();
 
     if (title === "" || description === "") {
         e.preventDefault();
@@ -87,6 +88,7 @@ form.addEventListener("submit", (e) => {
         if (task) {
             task.title = title;
             task.description = description;
+            task.category = category; //can be one of these - office, personal, learning, other
             task.status = status; //can be one of these - todo, doing, done
             task.tag = (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"); //can be one of these - pending, in progress, completed
 
@@ -95,6 +97,7 @@ form.addEventListener("submit", (e) => {
             taskTitle.value = "";
             taskDescription.value = "";
             taskStatus.value = "todo";
+            taskCategory.value = "office";
             cardId = null;
             addTaskBtn.textContent = "Add Task";
             modalHeading.textContent = "Add Task";
@@ -109,6 +112,7 @@ form.addEventListener("submit", (e) => {
         "title": title,
         "description": description,
         "status": status, //can be one of these - todo, doing, done
+        "category": category, //can be one of these - office, personal, learning, other
         "tag": (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"), //can be one of these - pending, in progress, completed
         "createdAt": Date.now()
     }
@@ -126,6 +130,7 @@ cancelTaskBtn.addEventListener("click", () => {
     taskTitle.value = "";
     taskDescription.value = "";
     taskStatus.value = "todo";
+    taskCategory.value = "office";
     cardId = null;
     addTaskBtn.textContent = "Add Task";
     modalHeading.textContent = "Add Task";
@@ -163,9 +168,17 @@ function showTasks(list = null) {
         let cardHead = document.createElement("div");
         cardHead.setAttribute("class", "card-head");
 
+        let tagsDiv = document.createElement("div");
+        tagsDiv.setAttribute("class", "tags-div");
+
         let span = document.createElement("span");
         span.setAttribute("class", "tag");
         span.textContent = task.tag;
+
+        let categorySpan = document.createElement("span");
+        categorySpan.setAttribute("class", "tag category");
+        categorySpan.textContent = task.category;
+
 
         let cardActions = document.createElement("div");
         cardActions.setAttribute("class", "card-actions");
@@ -207,7 +220,8 @@ function showTasks(list = null) {
         }
 
         div.append(cardHead, h3, taskMetaDiv, p);
-        cardHead.append(span, cardActions);
+        cardHead.append(tagsDiv, cardActions);
+        tagsDiv.append(span, categorySpan);
         cardActions.append(editIcon, deleteIcon);
         taskMetaDiv.append(taskIdInfo, taskCreationInfo);
 
@@ -221,6 +235,7 @@ function showTasks(list = null) {
             taskTitle.value = task.title;
             taskDescription.value = task.description;
             taskStatus.value = task.status;
+            taskCategory.value = task.category;
             cardId = task.tid;
             addTaskBtn.textContent = "Update Task";
             modalHeading.textContent = "Update Task";
@@ -282,18 +297,18 @@ setupDropZone(doneTaskList, "done");
 filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    filterByStatus();
+    filterByCategory();
 });
 
 
-function filterByStatus() {
-    const status = filterTaskStatus.value.trim();
-    if (status === "") {
+function filterByCategory() {
+    const category = filterTaskCategory.value.trim();
+    if (category === "") {
         showTasks(null);
         filterDialog.classList.remove("show");
         return;
     }
-    filteredTasks = tasks.filter((task) => { return (task.status).toLowerCase().includes(status.toLowerCase()) });
+    filteredTasks = tasks.filter((task) => { return (task.category).toLowerCase().includes(category.toLowerCase()) });
     showTasks(filteredTasks);
     filterDialog.classList.remove("show");
 }

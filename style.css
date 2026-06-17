@@ -274,8 +274,14 @@ main {
     align-items: center;
     gap: 0.5rem;
 }
+.card .card-head .tags-div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:0.5rem;
+}
 
-.card .card-head .tag {
+.card .card-head .tags-div .tag {
     text-transform: uppercase;
     font-size: 0.87rem;
     font-weight: 900;
@@ -319,7 +325,7 @@ main {
 
 }
 
-.column1 .card .tag {
+.column1 .card .card-head .tags-div .tag {
     background-color: var(--column-background-color1);
     color: var(--column-text-color1);
 }
@@ -334,7 +340,7 @@ main {
     color: var(--column-text-color1);
 }
 
-.column2 .card .tag {
+.column2 .card .card-head .tags-div .tag {
     background-color: var(--column-background-color2);
     color: var(--column-text-color2);
 }
@@ -348,7 +354,7 @@ main {
     color: var(--column-text-color2);
 }
 
-.column3 .card .tag {
+.column3 .card .card-head .tags-div .tag {
     background-color: var(--column-background-color3);
     color: var(--column-text-color3);
 }

@@ -65,6 +65,12 @@
 
                 <input type="text" id="task-title" placeholder="Task Title" required>
                 <textarea id="task-description" placeholder="Task Description" required></textarea>
+                <select name="category" id="task-category">
+                    <option value="office">Office</option>
+                    <option value="personal">Personal</option>
+                    <option value="learning">Learning</option>
+                    <option value="other">Other</option>
+                </select>
                 <select name="status" id="task-status">
                     <option value="todo">To Do</option>
                     <option value="doing">Doing</option>
@@ -81,11 +87,12 @@
             <form class="filter-content" name="filters-form">
                 <h2>Filters</h2>
                 <h5>Status</h5>
-                <select name="filter-task-status" id="filter-task-status">
+                <select name="filter-task-category" id="filter-task-category">
                     <option value="">All</option>
-                    <option value="todo">To Do</option>
-                    <option value="doing">Doing</option>
-                    <option value="done">Done</option>
+                    <option value="office">Office</option>
+                    <option value="personal">Personal</option>
+                    <option value="learning">Learning</option>
+                    <option value="other">Other</option>
                 </select>
                 <div class="actions">
                     <button type="submit" id="filter-btn">Apply Filter</button>
