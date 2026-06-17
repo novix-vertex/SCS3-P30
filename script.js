@@ -145,9 +145,7 @@ function showTasks(list = null) {
         if (!tasklist) {
             return;
         }
-        //   tasks = tasklist;
     } else {
-        //   tasks = list;
         tasklist = list;
     }
 
@@ -162,7 +160,11 @@ function showTasks(list = null) {
     tasklist.forEach((task, idx) => {
         let div = document.createElement("div");
         div.setAttribute("class", `card card${idx + 1}`);
-        div.setAttribute("data-tid", `${task.tid}`);
+        
+        div.dataset.tid = task.tid;
+        div.dataset.status = task.status;
+        div.dataset.category = task.category;
+
         div.setAttribute("draggable", true);
 
         let cardHead = document.createElement("div");
