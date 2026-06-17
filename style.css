@@ -110,11 +110,6 @@ header .header-center input {
     background-color: var(--background-color);
 }
 
-
-input[type="search"]::-webkit-search-cancel-button {
-    cursor: pointer;
-}
-
 .ri-search-line {
     color: var(--column-border-color1);
 }
