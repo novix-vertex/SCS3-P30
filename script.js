@@ -179,9 +179,11 @@ function showTasks(list = null) {
         categorySpan.setAttribute("class", "tag category");
         categorySpan.textContent = task.category;
 
-
         let cardActions = document.createElement("div");
         cardActions.setAttribute("class", "card-actions");
+
+        let completeIcon = document.createElement("i");
+        completeIcon.setAttribute("class", "ri-check-double-line");
 
         let editIcon = document.createElement("i");
         editIcon.setAttribute("class", "ri-edit-box-line");
@@ -222,7 +224,11 @@ function showTasks(list = null) {
         div.append(cardHead, h3, taskMetaDiv, p);
         cardHead.append(tagsDiv, cardActions);
         tagsDiv.append(span, categorySpan);
-        cardActions.append(editIcon, deleteIcon);
+        if (task.status != "done") {
+            cardActions.append(completeIcon, editIcon, deleteIcon);
+        } else {
+            cardActions.append(editIcon, deleteIcon);
+        }
         taskMetaDiv.append(taskIdInfo, taskCreationInfo);
 
         div.addEventListener("dragstart", (e) => {
@@ -240,6 +246,17 @@ function showTasks(list = null) {
             addTaskBtn.textContent = "Update Task";
             modalHeading.textContent = "Update Task";
         });
+        completeIcon.addEventListener("click", () => {
+            if (confirm("Are you sure, you want to mark this task as completed?")) {
+                const foundTask = tasks.find((t) => { return t.tid === task.tid });
+                if (foundTask) {
+                    foundTask.status = "done";
+                    foundTask.tag = "Completed";
+                    saveTasks();
+                    showTasks();
+                }
+            }
+        })
 
         deleteIcon.addEventListener("click", () => {
             if (confirm("Are you sure, you want to delete this task?")) {

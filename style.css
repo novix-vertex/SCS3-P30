@@ -24,6 +24,7 @@
 
     --card-delete-icon-color: #ff6347;
     --card-edit-icon-color: #a8ad4d;
+    --card-complete-icon-color: #4dad6a;
 }
 
 .dark {
@@ -47,6 +48,7 @@
 
     --card-delete-icon-color: #F87171;
     --card-edit-icon-color: #FBBF24;
+    --card-complete-icon-color: #44fb24;
 }
 
 
@@ -274,11 +276,12 @@ main {
     align-items: center;
     gap: 0.5rem;
 }
-.card .card-head .tags-div{
+
+.card .card-head .tags-div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap:0.5rem;
+    gap: 0.5rem;
 }
 
 .card .card-head .tags-div .tag {
@@ -299,6 +302,11 @@ main {
 .card .card-head .card-actions .ri-edit-box-line {
     color: var(--card-edit-icon-color);
 }
+
+.card .card-head .card-actions .ri-check-double-line {
+    color: var(--card-complete-icon-color);
+}
+
 
 .card .card-head .card-actions .ri-delete-bin-6-line {
     color: var(--card-delete-icon-color);
