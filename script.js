@@ -265,7 +265,7 @@ function createCard(task, idx) {
 
 }
 
-//Call card action buttons using event delegation using bubbling
+//Call card action buttons using event delegation
 todoTaskList.addEventListener("click", handleCardActions);
 doingTaskList.addEventListener("click", handleCardActions);
 doneTaskList.addEventListener("click", handleCardActions);
