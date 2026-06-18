@@ -333,16 +333,16 @@ main {
 .card .title {
     font-weight: 900;
     color: var(--column-text-color1);
-
 }
 
 .card .task-meta {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: var(--column-text-color1);
-    padding-bottom: 0.87rem;
+    padding-block: 0.6rem;
 }
 
 .card .description {
@@ -368,7 +368,8 @@ main {
 
 
 .column1 .card .title,
-.column1 .card .description {
+.column1 .card .description,
+.column1 .card .task-created-at-val {
     color: var(--column-text-color1);
 }
 
@@ -387,7 +388,8 @@ main {
 }
 
 .column2 .card .title,
-.column2 .card .description {
+.column2 .card .description,
+.column2 .card .task-created-at-val {
     color: var(--column-text-color2);
 }
 
@@ -407,8 +409,13 @@ main {
 }
 
 .column3 .card .title,
-.column3 .card .description {
+.column3 .card .description,
+.column3 .card .task-created-at-val {
     color: var(--column-text-color3);
+}
+.column .card .task-created-at-val{
+    font-style: bold;
+    padding-block: 0.5rem;
 }
 
 .modal,

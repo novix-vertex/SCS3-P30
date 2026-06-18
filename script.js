@@ -417,22 +417,24 @@ function createCard(task, idx) {
     deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
     deleteIcon.classList.add("delete-btn");
 
-    let h3 = document.createElement("h3");
-    h3.setAttribute("class", "title");
-    h3.textContent = task.title;
+    let taskTitle = document.createElement("h3");
+    taskTitle.setAttribute("class", "title");
+    taskTitle.textContent = task.title;
 
     let taskMetaDiv = document.createElement("div");
     taskMetaDiv.setAttribute("class", "task-meta");
 
     let taskIdInfo = document.createElement("h5");
+    taskIdInfo.setAttribute("class","task-id-val");
     taskIdInfo.textContent = task.tid;
-
+    
     let taskCreationInfo = document.createElement("h5");
-    taskCreationInfo.textContent = formatDate(new Date(task.createdAt));
+    taskCreationInfo.setAttribute("class","task-created-at-val");
+    taskCreationInfo.textContent = "Created At: "+formatDate(new Date(task.createdAt));
 
-    let p = document.createElement("p");
-    p.setAttribute("class", "description");
-    p.textContent = task.description
+    let taskDesc = document.createElement("p");
+    taskDesc.setAttribute("class", "description");
+    taskDesc.textContent = task.description
 
     if (task.status == "todo") {
         todoTaskList.append(div);
@@ -447,7 +449,7 @@ function createCard(task, idx) {
         doneTasks += 1;
     }
 
-    div.append(cardHead, h3, taskMetaDiv, p);
+    div.append(cardHead, taskMetaDiv, taskDesc, taskCreationInfo);
     cardHead.append(tagsDiv, cardActions);
     tagsDiv.append(span, categorySpan);
 
@@ -457,7 +459,7 @@ function createCard(task, idx) {
         cardActions.append(editIcon, deleteIcon);
     }
 
-    taskMetaDiv.append(taskIdInfo, taskCreationInfo);
+    taskMetaDiv.append(taskIdInfo,taskTitle);
 
 }
 
