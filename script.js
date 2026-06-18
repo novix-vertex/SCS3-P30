@@ -61,6 +61,15 @@ searchInput.addEventListener("input", (e) => {
 });
 
 function performSearch() {
+    console.log("using .value", searchInput.value)
+    console.log("using getAttribute", searchInput.getAttribute("value"));
+    
+    /**
+     * Difference between using .value or getAttribute() 
+     * getAttribute = gives Original HTML value not the live one - so here in search default value was null, so it will always return null
+     * value property = It gives current live value 
+     */
+    
     const searchString = searchInput.value.trim();
     if (searchString === "") {
         showTasks(null);
@@ -160,7 +169,7 @@ function showTasks(list = null) {
     tasklist.forEach((task, idx) => {
         let div = document.createElement("div");
         div.setAttribute("class", `card card${idx + 1}`);
-        
+
         div.dataset.tid = task.tid;
         div.dataset.status = task.status;
         div.dataset.category = task.category;
