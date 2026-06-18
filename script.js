@@ -54,6 +54,12 @@ clearAllBtn.addEventListener("click", () => {
 
 changeThemeBtn.addEventListener("click", () => {
     body.classList.toggle("dark");
+
+    if (!document.body.hasAttribute("data-theme")) {
+        document.body.dataset.theme = "dark";
+    } else {
+        document.body.removeAttribute("data-theme");
+    }
 });
 
 searchInput.addEventListener("input", (e) => {
@@ -63,13 +69,13 @@ searchInput.addEventListener("input", (e) => {
 function performSearch() {
     console.log("using .value", searchInput.value)
     console.log("using getAttribute", searchInput.getAttribute("value"));
-    
+
     /**
      * Difference between using .value or getAttribute() 
      * getAttribute = gives Original HTML value not the live one - so here in search default value was null, so it will always return null
      * value property = It gives current live value 
      */
-    
+
     const searchString = searchInput.value.trim();
     if (searchString === "") {
         showTasks(null);
