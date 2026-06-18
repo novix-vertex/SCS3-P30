@@ -135,7 +135,8 @@ header .header-center input {
     background-color: var(--column-border-color2);
     color: var(--column-background-color2);
 }
-.header-right .data-alter-btn{
+
+.header-right .data-alter-btn {
     background-color: var(--column-border-color3);
     color: var(--column-background-color3);
 }
@@ -299,9 +300,17 @@ main {
     font-weight: 900;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
+}
 
+.card .card-head .tags-div .status {
     background-color: var(--column-background-color1);
     color: var(--column-text-color1);
+}
+
+.card .card-head .tags-div .category {
+    background-color: var(--column-text-color1);
+    color: var(--column-background-color1);
+
 }
 
 .card .card-head .card-actions i {
@@ -342,10 +351,16 @@ main {
 
 }
 
-.column1 .card .card-head .tags-div .tag {
+.column1 .card .card-head .tags-div .status {
     background-color: var(--column-background-color1);
     color: var(--column-text-color1);
 }
+
+.column1 .card .card-head .tags-div .category {
+    background-color: var(--column-text-color1);
+    color: var(--column-background-color1);
+}
+
 
 .column1 .card .task-meta {
     color: var(--column-text-color1);
@@ -357,9 +372,14 @@ main {
     color: var(--column-text-color1);
 }
 
-.column2 .card .card-head .tags-div .tag {
+.column2 .card .card-head .tags-div .status {
     background-color: var(--column-background-color2);
     color: var(--column-text-color2);
+}
+
+.column2 .card .card-head .tags-div .category {
+    background-color: var(--column-text-color2);
+    color: var(--column-background-color2);
 }
 
 .column2 .card .task-meta {
@@ -371,10 +391,16 @@ main {
     color: var(--column-text-color2);
 }
 
-.column3 .card .card-head .tags-div .tag {
+.column3 .card .card-head .tags-div .status {
     background-color: var(--column-background-color3);
     color: var(--column-text-color3);
 }
+
+.column3 .card .card-head .tags-div .category {
+    background-color: var(--column-text-color3);
+    color: var(--column-background-color3);
+}
+
 
 .column3 .card .task-meta {
     color: var(--column-text-color3);

@@ -395,7 +395,7 @@ function createCard(task, idx) {
     tagsDiv.setAttribute("class", "tags-div");
 
     let span = document.createElement("span");
-    span.setAttribute("class", "tag");
+    span.setAttribute("class", "tag status");
     span.textContent = task.tag;
 
     let categorySpan = document.createElement("span");
