@@ -131,6 +131,15 @@ header .header-center input {
     cursor: pointer;
 }
 
+.header-right .demo-btn {
+    background-color: var(--column-border-color2);
+    color: var(--column-background-color2);
+}
+.header-right .data-alter-btn{
+    background-color: var(--column-border-color3);
+    color: var(--column-background-color3);
+}
+
 .header-right button:active {
     transform: scale(0.95);
 }
@@ -410,8 +419,9 @@ main {
     height: 100%;
     overflow: auto;
 }
+
 .attr-prop-demo-content {
-    width:600px;
+    width: 600px;
 }
 
 .propagation-content {
@@ -470,7 +480,8 @@ textarea {
 .actions button:active {
     transform: scale(0.95);
 }
-.attr-prop-demo-content .form-content{
+
+.attr-prop-demo-content .form-content {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -478,7 +489,8 @@ textarea {
     justify-content: center;
     gap: 1rem;
 }
-.attr-prop-demo-content .form-content input{
+
+.attr-prop-demo-content .form-content input {
     width: 100%;
 }
 
