@@ -21,6 +21,7 @@
         </div>
 
         <div class="header-right">
+            <button id="attr-prop-demo-btn">Attr vs Prop Demo</button>
             <button id="event-propagation-btn">Event Progagation</button>
             <button id="pipeline-demo-btn">Pipeling Demo</button>
 
@@ -153,7 +154,7 @@
             </div>
         </section>
 
-        <aside class="propagation-dialog">
+        <section class="propagation-dialog">
             <div class="propagation-content" name="filters-form">
                 <div class="modal-header">
                     <h2>Event Propagation</h2>
@@ -176,7 +177,32 @@
                     <button id="capturing-btn">Event Capturing</button>
                 </div>
             </div>
-        </aside>
+        </section>
+        <section class="attr-prop-demo-dialog">
+            <div class="attr-prop-demo-content" name="filters-form">
+                <div class="modal-header">
+                    <h2>Attribute vs Property Demo</h2>
+                    <button id="attr-prop-demo-modal-close-btn" class="modal-close-btn">×</button>
+                </div>
+                <form id="attr-prop-demo-form" class="form-content" name="attr-prop-demo-form">
+                    <input type="text" value="Shiny" name="demo" id="attr-prop-demo-txt" required>
+                    <div class="actions">
+                        <button type="submit" id="attr-prop-demo-btn">Demonstrate</button>
+                    </div>
+                    <div class="result-box">
+                        <div class="property-section">
+                            <strong>Property Value: </strong>
+                            <em>It provides <span>"Live Value"</span></em>
+                        </div>
+                        <div class="attribute-section">
+                            <strong>Attribute Value: </strong>
+                            <em>It provides <span>"Original Value"</span></em>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </section>
     </main>
     <script src="script.js" defer></script>
 </body>

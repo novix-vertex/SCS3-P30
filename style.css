@@ -379,6 +379,7 @@ main {
 .modal,
 .filter-dialog,
 .pipeline-modal,
+.attr-prop-demo-dialog,
 .propagation-dialog {
     position: fixed;
     display: none;
@@ -391,7 +392,9 @@ main {
 .modal-content,
 .filter-content,
 .pipeline-modal-content,
+.attr-prop-demo-content,
 .propagation-content {
+    .pipeline-modal-content,
     width: 400px;
     background: var(--column-background-color1);
     padding: 20px;
@@ -407,6 +410,10 @@ main {
     height: 100%;
     overflow: auto;
 }
+.attr-prop-demo-content {
+    width:600px;
+}
+
 .propagation-content {
     background: var(--background-color);
 }
@@ -414,6 +421,7 @@ main {
 .modal.show,
 .filter-dialog.show,
 .pipeline-modal.show,
+.attr-prop-demo-dialog.show,
 .propagation-dialog.show {
     display: flex;
 }
@@ -462,6 +470,19 @@ textarea {
 .actions button:active {
     transform: scale(0.95);
 }
+.attr-prop-demo-content .form-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.attr-prop-demo-content .form-content input{
+    width: 100%;
+}
+
+
 
 .filter-dialog {
     height: 100%;

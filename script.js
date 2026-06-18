@@ -6,6 +6,7 @@ const clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-b
 const changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
 const pipelineBtn = document.querySelector(".header-right #pipeline-demo-btn");
 const propagationeBtn = document.querySelector(".header-right #event-propagation-btn");
+const attrPropDemoBtn = document.querySelector(".header-right #attr-prop-demo-btn");
 
 const searchInput = document.querySelector("#search");
 
@@ -34,6 +35,14 @@ const filterForm = document.querySelector(".filter-content");
 const filterTaskCategory = document.querySelector("#filter-task-category");
 const filterModelCloseBtn = document.querySelector("#filter-modal-close-btn");
 
+const attrPropDemoDialog = document.querySelector(".attr-prop-demo-dialog");
+const attrPropDemoContent = document.querySelector(".attr-prop-demo-content");
+const attrPropDemoModelCloseBtn = document.querySelector("#attr-prop-demo-modal-close-btn");
+const attrPropDemoForm = document.querySelector("#attr-prop-demo-form");
+const attrPropDemoPropResult = document.querySelector(".result-box .property-section");
+const attrPropDemoAttrResult = document.querySelector(".result-box .attribute-section");
+
+
 
 const pipelineDialog = document.querySelector(".pipeline-modal");
 const pipelineContent = document.querySelector(".pipeline-modal-content");
@@ -46,7 +55,6 @@ const pipelineStepDesc = document.querySelector(".explanation p");
 const propagationDialog = document.querySelector(".propagation-dialog");
 const propagationContent = document.querySelector(".propagation-content");
 const propagationModelCloseBtn = document.querySelector("#propagation-modal-close-btn");
-
 
 const propagationDemo = document.querySelector(".propagation-dialog .propagation-content .demo");
 const bubblingBtn = document.querySelector("#bubbling-btn");
@@ -145,8 +153,8 @@ let parentHandler;
 let childHandler;
 
 function setupPropagation(capturing) {
-    let propFlow =document.querySelector(".prop-flow");
-    propFlow.innerHTML="";
+    let propFlow = document.querySelector(".prop-flow");
+    propFlow.innerHTML = "";
     console.log("listener", capturing);
     if (grandParentHandler) {
         console.log("listener removed");
@@ -161,17 +169,17 @@ function setupPropagation(capturing) {
 
     grandParentHandler = function () {
         console.log("grand parent");
-        propFlow.innerHTML+="-->Grand Parent";
+        propFlow.innerHTML += "-->Grand Parent";
     };
-    
+
     parentHandler = function () {
         console.log("parent");
-        propFlow.innerHTML+="-->Parent";
+        propFlow.innerHTML += "-->Parent";
     };
-    
+
     childHandler = function () {
         console.log("child");
-        propFlow.innerHTML+="-->Child";
+        propFlow.innerHTML += "-->Child";
     };
 
     grandParent.addEventListener("click", grandParentHandler, capturing);
@@ -201,13 +209,20 @@ pipelineModelCloseBtn.addEventListener("click", () => {
 });
 filterModelCloseBtn.addEventListener("click", () => {
     filterDialog.classList.remove("show");
-})
+});
 
 propagationModelCloseBtn.addEventListener("click", () => {
     propagationDialog.classList.remove("show");
-})
+});
+
+attrPropDemoModelCloseBtn.addEventListener("click", () => {
+    attrPropDemoDialog.classList.remove("show");
+});
 
 
+attrPropDemoBtn.addEventListener("click", () => {
+    attrPropDemoDialog.classList.add("show");
+});
 
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
@@ -257,7 +272,15 @@ function performSearch() {
     filteredTasks = tasks.filter((task) => { return (task.title).toLowerCase().includes(searchInput.value.toLowerCase()) || (task.description).toLowerCase().includes(searchInput.value.toLowerCase()) });
     showTasks(filteredTasks);
 }
-
+attrPropDemoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const inputValue = e.target[0].value;
+    const attributeValue = e.target[0].getAttribute("value");
+    attrPropDemoPropResult.innerHTML = `<strong>Property Value: </strong>
+                            <em>Live Value is <span>"${inputValue}"</span></em>`;
+    attrPropDemoAttrResult.innerHTML = `<strong>Attribute Value: </strong>
+                            <em>Original Value is <span>"${attributeValue}"</span></em>`;
+});
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
