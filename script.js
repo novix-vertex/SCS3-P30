@@ -173,122 +173,154 @@ function showTasks(list = null) {
     doneTasks = 0;
 
     tasklist.forEach((task, idx) => {
-        let div = document.createElement("div");
-        div.setAttribute("class", `card card${idx + 1}`);
-
-        div.dataset.tid = task.tid;
-        div.dataset.status = task.status;
-        div.dataset.category = task.category;
-
-        div.setAttribute("draggable", true);
-
-        let cardHead = document.createElement("div");
-        cardHead.setAttribute("class", "card-head");
-
-        let tagsDiv = document.createElement("div");
-        tagsDiv.setAttribute("class", "tags-div");
-
-        let span = document.createElement("span");
-        span.setAttribute("class", "tag");
-        span.textContent = task.tag;
-
-        let categorySpan = document.createElement("span");
-        categorySpan.setAttribute("class", "tag category");
-        categorySpan.textContent = task.category;
-
-        let cardActions = document.createElement("div");
-        cardActions.setAttribute("class", "card-actions");
-
-        let completeIcon = document.createElement("i");
-        completeIcon.setAttribute("class", "ri-check-double-line");
-
-        let editIcon = document.createElement("i");
-        editIcon.setAttribute("class", "ri-edit-box-line");
-
-        let deleteIcon = document.createElement("i");
-        deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
-
-        let h3 = document.createElement("h3");
-        h3.setAttribute("class", "title");
-        h3.textContent = task.title;
-
-        let taskMetaDiv = document.createElement("div");
-        taskMetaDiv.setAttribute("class", "task-meta");
-
-        let taskIdInfo = document.createElement("h5");
-        taskIdInfo.textContent = task.tid;
-
-        let taskCreationInfo = document.createElement("h5");
-        taskCreationInfo.textContent = formatDate(new Date(task.createdAt));
-
-        let p = document.createElement("p");
-        p.setAttribute("class", "description");
-        p.textContent = task.description
-
-        if (task.status == "todo") {
-            todoTaskList.append(div);
-            todoTasks += 1;
-        }
-        if (task.status == "doing") {
-            doingTaskList.append(div);
-            doingTasks += 1;
-        }
-        if (task.status == "done") {
-            doneTaskList.append(div);
-            doneTasks += 1;
-        }
-
-        div.append(cardHead, h3, taskMetaDiv, p);
-        cardHead.append(tagsDiv, cardActions);
-        tagsDiv.append(span, categorySpan);
-        if (task.status != "done") {
-            cardActions.append(completeIcon, editIcon, deleteIcon);
-        } else {
-            cardActions.append(editIcon, deleteIcon);
-        }
-        taskMetaDiv.append(taskIdInfo, taskCreationInfo);
-
-        div.addEventListener("dragstart", (e) => {
-            dragCardId = div.dataset.tid;
-            console.log("Dragging:", dragCardId);
-        });
-
-        editIcon.addEventListener("click", () => {
-            modal.classList.add("show");
-            taskTitle.value = task.title;
-            taskDescription.value = task.description;
-            taskStatus.value = task.status;
-            taskCategory.value = task.category;
-            cardId = task.tid;
-            addTaskBtn.textContent = "Update Task";
-            modalHeading.textContent = "Update Task";
-        });
-        completeIcon.addEventListener("click", () => {
-            if (confirm("Are you sure, you want to mark this task as completed?")) {
-                const foundTask = tasks.find((t) => { return t.tid === task.tid });
-                if (foundTask) {
-                    foundTask.status = "done";
-                    foundTask.tag = "Completed";
-                    saveTasks();
-                    showTasks();
-                }
-            }
-        })
-
-        deleteIcon.addEventListener("click", () => {
-            if (confirm("Are you sure, you want to delete this task?")) {
-                tasks = tasks.filter((t) => { return t.tid != task.tid });
-                saveTasks();
-                showTasks();
-            }
-        })
-
+        createCard(task, idx);
     });
+
     totalTodoTaskList.textContent = `Pending ${todoTasks > 1 ? "Tasks" : "Task"} : ${todoTasks}`;
     totalDoingTaskList.textContent = `In Progress ${doingTasks > 1 ? "Tasks" : "Task"} : ${doingTasks}`;
     totalDoneTaskList.textContent = `Completed ${doneTasks > 1 ? "Tasks" : "Task"} : ${doneTasks}`;
     modal.classList.remove("show");
 }
+
+function createCard(task, idx) {
+    let div = document.createElement("div");
+    div.setAttribute("class", `card card${idx + 1}`);
+
+    div.dataset.tid = task.tid;
+    div.dataset.status = task.status;
+    div.dataset.category = task.category;
+
+    div.setAttribute("draggable", true);
+
+    let cardHead = document.createElement("div");
+    cardHead.setAttribute("class", "card-head");
+
+    let tagsDiv = document.createElement("div");
+    tagsDiv.setAttribute("class", "tags-div");
+
+    let span = document.createElement("span");
+    span.setAttribute("class", "tag");
+    span.textContent = task.tag;
+
+    let categorySpan = document.createElement("span");
+    categorySpan.setAttribute("class", "tag category");
+    categorySpan.textContent = task.category;
+
+    let cardActions = document.createElement("div");
+    cardActions.setAttribute("class", "card-actions");
+
+    let completeIcon = document.createElement("i");
+    completeIcon.setAttribute("class", "ri-check-double-line");
+    completeIcon.classList.add("complete-btn");
+
+    let editIcon = document.createElement("i");
+    editIcon.setAttribute("class", "ri-edit-box-line");
+    editIcon.classList.add("edit-btn");
+
+    let deleteIcon = document.createElement("i");
+    deleteIcon.setAttribute("class", "ri-delete-bin-6-line");
+    deleteIcon.classList.add("delete-btn");
+
+    let h3 = document.createElement("h3");
+    h3.setAttribute("class", "title");
+    h3.textContent = task.title;
+
+    let taskMetaDiv = document.createElement("div");
+    taskMetaDiv.setAttribute("class", "task-meta");
+
+    let taskIdInfo = document.createElement("h5");
+    taskIdInfo.textContent = task.tid;
+
+    let taskCreationInfo = document.createElement("h5");
+    taskCreationInfo.textContent = formatDate(new Date(task.createdAt));
+
+    let p = document.createElement("p");
+    p.setAttribute("class", "description");
+    p.textContent = task.description
+
+    if (task.status == "todo") {
+        todoTaskList.append(div);
+        todoTasks += 1;
+    }
+    if (task.status == "doing") {
+        doingTaskList.append(div);
+        doingTasks += 1;
+    }
+    if (task.status == "done") {
+        doneTaskList.append(div);
+        doneTasks += 1;
+    }
+
+    div.append(cardHead, h3, taskMetaDiv, p);
+    cardHead.append(tagsDiv, cardActions);
+    tagsDiv.append(span, categorySpan);
+
+    if (task.status != "done") {
+        cardActions.append(completeIcon, editIcon, deleteIcon);
+    } else {
+        cardActions.append(editIcon, deleteIcon);
+    }
+
+    taskMetaDiv.append(taskIdInfo, taskCreationInfo);
+
+}
+
+//Call card action buttons using event delegation using bubbling
+todoTaskList.addEventListener("click", handleCardActions);
+doingTaskList.addEventListener("click", handleCardActions);
+doneTaskList.addEventListener("click", handleCardActions);
+
+todoTaskList.addEventListener("dragstart", handleDragStart);
+doingTaskList.addEventListener("dragstart", handleDragStart);
+doneTaskList.addEventListener("dragstart", handleDragStart);
+
+
+function handleDragStart(e) {
+    const card = e.target.closest(".card");
+    if (!card) return;
+
+    dragCardId = card.dataset.tid;
+    console.log("Dragging:", dragCardId);
+}
+
+function handleCardActions(e) {
+    const target = e.target;
+    const card = target.closest(".card");
+    if (!card) return;
+
+    const tid = card.dataset.tid;
+    const task = tasks.find(t => t.tid === tid);
+    if (!task) return;
+
+    if (target.classList.contains("delete-btn")) {
+        if (confirm("Are you sure, you want to delete this task?")) {
+            tasks = tasks.filter(t => t.tid !== tid);
+            saveTasks();
+            showTasks();
+        }
+    }
+
+    if (target.classList.contains("edit-btn")) {
+        modal.classList.add("show");
+        taskTitle.value = task.title;
+        taskDescription.value = task.description;
+        taskStatus.value = task.status;
+        taskCategory.value = task.category;
+        cardId = task.tid;
+        addTaskBtn.textContent = "Update Task";
+        modalHeading.textContent = "Update Task";
+    }
+
+    if (target.classList.contains("complete-btn")) {
+        if (confirm("Are you sure, you want to mark this task as completed?")) {
+            task.status = "done";
+            task.tag = "Completed";
+            saveTasks();
+            showTasks();
+        }
+    }
+}
+
 
 function formatDate(date) {
     return date.toLocaleString(undefined, {
