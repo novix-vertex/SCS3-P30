@@ -4,6 +4,7 @@ const filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
 const addBtn = document.querySelector(".header-right #add-todo-task-btn");
 const clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
 const changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
+const pipelineThemeBtn = document.querySelector(".header-right #pipeline-demo-btn");
 
 const searchInput = document.querySelector("#search");
 
@@ -31,10 +32,26 @@ const filterDialog = document.querySelector(".filter-dialog");
 const filterForm = document.querySelector(".filter-content");
 const filterTaskCategory = document.querySelector("#filter-task-category");
 
+const pipelineDialog = document.querySelector(".pipeline-modal");
+const pipelineContent = document.querySelector(".pipeline-modal-content");
+const pipelineModelCloseBtn = document.querySelector("#pipeline-modal-close-btn");
+
+
+
+
 let dragCardId = null;
 let cardId = null;
 
 let tasks = [];
+
+
+pipelineThemeBtn.addEventListener("click", () => {
+    pipelineDialog.classList.add("show");
+});
+
+pipelineModelCloseBtn.addEventListener("click", () => {
+    pipelineDialog.classList.remove("show");
+})
 
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");

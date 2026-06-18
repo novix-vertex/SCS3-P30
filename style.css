@@ -387,7 +387,8 @@ main {
 }
 
 .modal-content,
-.filter-content {
+.filter-content,
+.pipeline-modal-content {
     width: 400px;
     background: var(--column-background-color1);
     padding: 20px;
@@ -396,6 +397,11 @@ main {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+.pipeline-modal-content {
+    width: 600px;
+    height:100%;
+    overflow: auto;
 }
 
 .modal.show,
@@ -456,4 +462,152 @@ textarea {
 
 .filter-content {
     height: 100%;
+}
+
+
+/*pipeline-modal*/
+
+.pipeline-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--modal-background-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.pipeline-modal.show {
+    display: flex;
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pipeline-modal-close-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    font-style: bold;
+    cursor: pointer;
+    color:var(--column-border-color1);
+}
+
+.pipeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    gap: 0.5rem;
+    width: 100%;
+
+    grid-template-areas:
+        "step1 step2"
+        "step1 step2"
+        "step1 step2"
+        "step1 step2"
+        "step-arrow-1 step-arrow-2"
+        "step3 step3"
+        "step-arrow-3 step-arrow-3"
+        "step4 step4"
+        "step-arrow-4 step-arrow-4"
+        "step5 step5"
+        "step-arrow-5 step-arrow-5"
+        "step6 step6"
+        "step-arrow-6 step-arrow-6"
+        "step7 step7"
+}
+
+.step {
+    padding: 0.6rem;
+    background: var(--column-border-color1);
+    color: var(--column-background-color1);
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.step:active {
+    transform: scale(0.95);
+}
+
+
+.step1 {
+    grid-area: step1;
+}
+
+.step2 {
+    grid-area: step2;
+}
+
+.step3 {
+    grid-area: step3;
+}
+
+.step4 {
+    grid-area: step4;
+}
+
+.step5 {
+    grid-area: step5;
+}
+
+.step6 {
+    grid-area: step6;
+}
+
+.step7 {
+    grid-area: step7;
+}
+
+.step-arrow-1 {
+    grid-area: step-arrow-1;
+}
+
+.step-arrow-2 {
+    grid-area: step-arrow-2;
+}
+
+.step-arrow-3 {
+    grid-area: step-arrow-3;
+}
+
+.step-arrow-4 {
+    grid-area: step-arrow-4;
+}
+
+.step-arrow-5 {
+    grid-area: step-arrow-5;
+}
+
+.step-arrow-6 {
+    grid-area: step-arrow-6;
+}
+
+.parsing {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    background-color: var(--background-color);
+}
+
+.explanation {
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+}
+
+.explanation h3 {
+    padding-block: 0.5rem;
+    color: var(--text-color);
+}
+
+.explanation p {
+    color: var(--text-color);
 }

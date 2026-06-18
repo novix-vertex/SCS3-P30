@@ -19,7 +19,11 @@
             <i class="ri-search-line"></i>
             <input type="search" id="search" placeholder="Search...">
         </div>
+
         <div class="header-right">
+            <button id="event-propagation-btn">Event Progagation</button>
+            <button id="pipeline-demo-btn">Pipeling Demo</button>
+
             <button id="add-todo-task-btn">+ Add Task</button>
             <button id="filter-todo-task-btn">Filter</button>
             <button id="clear-all-todo-task-btn">Clear All</button>
@@ -99,6 +103,56 @@
                 </div>
             </form>
         </aside>
+
+        <section class="pipeline-modal" id="pipeline-modal">
+            <div class="pipeline-modal-content">
+                <div class="modal-header">
+                    <h2>Browser Rendering Pipeline</h2>
+                    <button id="pipeline-modal-close-btn">×</button>
+                </div>
+
+                <div class="explanation">
+                    <h3>Simple Explanation</h3>
+                    <p>
+                        When you open a website, the browser first reads HTML and CSS,
+                        then builds structure and styles, and finally shows the page on screen.
+                    </p>
+                </div>
+
+                <div class="pipeline">
+                    <section class="parsing html-parsing step1">
+                        <div class="step">HTML</div>
+                        <i class="ri-arrow-down-long-line"></i>
+                        <div class="step">Tokenization</div>
+                        <i class="ri-arrow-down-long-line"></i>
+                        <div class="step">Parsing</div>
+                        <i class="ri-arrow-down-long-line"></i>
+                        <div class="step">DOM Tree</div>
+                    </section>
+
+                    <section class="parsing css-parsing step2">
+                        <div class="step">CSS</div>
+                        <i class="ri-arrow-down-long-line"></i>
+                        <div class="step">CSSSOM</div>
+                    </section>
+                    <i class="step-arrow-1 ri-arrow-down-long-line"></i>
+                    <i class="step-arrow-2 ri-arrow-down-long-line"></i>
+                    <div class="step step3">DOM + CSSOM</div>
+                    <i class="step-arrow-3 ri-arrow-down-long-line"></i>
+                    <div class="step step4">Render Tree</div>
+                    <i class="step-arrow-4 ri-arrow-down-long-line"></i>
+                    <div class="step step5">Layout</div>
+                    <i class="step-arrow-5 ri-arrow-down-long-line"></i>
+                    <div class="step step6">Paint</div>
+                    <i class="step-arrow-6 ri-arrow-down-long-line"></i>
+                    <div class="step step7">Web Page</div>
+
+
+
+
+                </div>
+            </div>
+        </section>
     </main>
     <script src="script.js" defer></script>
 </body>
