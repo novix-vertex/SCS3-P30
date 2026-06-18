@@ -36,13 +36,89 @@ const pipelineDialog = document.querySelector(".pipeline-modal");
 const pipelineContent = document.querySelector(".pipeline-modal-content");
 const pipelineModelCloseBtn = document.querySelector("#pipeline-modal-close-btn");
 
+const pipelineStep = document.querySelector(".pipeline");
+const pipelineStepHeading = document.querySelector(".explanation h3");
+const pipelineStepDesc = document.querySelector(".explanation p");
 
-
+const renderPipelineArr = [
+    {
+        id: "step-html",
+        title: "HTML",
+        description: "The browser reads the HTML file, which contains the content and structure of the webpage."
+    },
+    {
+        id: "step-tokenization",
+        title: "Tokenization",
+        description: "The browser breaks the HTML code into small pieces called tokens so it can understand each part."
+    },
+    {
+        id: "step-parsing",
+        title: "Parsing",
+        description: "The browser analyzes the tokens and figures out how the elements are related to each other."
+    },
+    {
+        id: "step-domtree",
+        title: "DOM Tree",
+        description: "A tree-like structure is created that represents all HTML elements on the page."
+    },
+    {
+        id: "step-css",
+        title: "CSS",
+        description: "The browser reads the CSS file, which contains the styling rules for the webpage."
+    },
+    {
+        id: "step-cssom",
+        title: "CSSOM Tree",
+        description: "The browser converts CSS rules into a tree structure that it can easily understand and apply."
+    },
+    {
+        id: "step-dom-cssom",
+        title: "DOM + CSSOM",
+        description: "The browser combines the page structure (DOM) and styles (CSSOM) together."
+    },
+    {
+        id: "step-render-tree",
+        title: "Render Tree",
+        description: "A render tree is created containing only the visible elements and their styles."
+    },
+    {
+        id: "step-layout",
+        title: "Layout",
+        description: "The browser calculates the size and position of every visible element on the page."
+    },
+    {
+        id: "step-paint",
+        title: "Paint",
+        description: "The browser draws text, colors, borders, and images onto the screen."
+    },
+    {
+        id: "step-web-page",
+        title: "Final Web Page",
+        description: "The fully rendered webpage is displayed and ready for the user to interact with."
+    }
+];
 
 let dragCardId = null;
 let cardId = null;
 
 let tasks = [];
+
+//Event propagation used here too.
+pipelineStep.addEventListener("click", (e) => {
+    console.log("e-target", e.target);
+    step = renderPipelineArr.find((item) => {
+        console.log("id", e.target.dataset.id);
+        return item.id === e.target.dataset.id;
+    });
+    console.log(step);
+    if (!step) {
+        pipelineStepHeading.textContent = "Simple Explanation";
+        pipelineStepDesc.textContent = "When you open a website, the browser first reads HTML and CSS, then builds structure and styles, and finally shows the page on screen.";
+    } else {
+        pipelineStepHeading.textContent = step.title;
+        pipelineStepDesc.textContent = step.description;
+    }
+});
 
 
 pipelineThemeBtn.addEventListener("click", () => {
