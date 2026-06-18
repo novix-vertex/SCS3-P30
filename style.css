@@ -377,7 +377,9 @@ main {
 }
 
 .modal,
-.filter-dialog {
+.filter-dialog,
+.pipeline-modal,
+.propagation-dialog {
     position: fixed;
     display: none;
     align-items: center;
@@ -388,7 +390,8 @@ main {
 
 .modal-content,
 .filter-content,
-.pipeline-modal-content {
+.pipeline-modal-content,
+.propagation-content {
     width: 400px;
     background: var(--column-background-color1);
     padding: 20px;
@@ -398,14 +401,20 @@ main {
     flex-direction: column;
     gap: 12px;
 }
+
 .pipeline-modal-content {
     width: 600px;
-    height:100%;
+    height: 100%;
     overflow: auto;
+}
+.propagation-content {
+    background: var(--background-color);
 }
 
 .modal.show,
-.filter-dialog.show {
+.filter-dialog.show,
+.pipeline-modal.show,
+.propagation-dialog.show {
     display: flex;
 }
 
@@ -467,33 +476,19 @@ textarea {
 
 /*pipeline-modal*/
 
-.pipeline-modal {
-    position: fixed;
-    inset: 0;
-    background: var(--modal-background-color);
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.pipeline-modal.show {
-    display: flex;
-}
-
-
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#pipeline-modal-close-btn {
+.modal-close-btn {
     border: none;
     background: transparent;
     font-size: 1.5rem;
     font-style: bold;
     cursor: pointer;
-    color:var(--column-border-color1);
+    color: var(--column-border-color1);
 }
 
 .pipeline {
@@ -610,4 +605,37 @@ textarea {
 
 .explanation p {
     color: var(--text-color);
+}
+
+.propagation-content .demo {
+    background: var(--background-color);
+}
+
+.prop-flow {
+    background-color: var(--column-background-color1);
+    color: var(--column-text-color1);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.propagate-element {
+    padding: 2rem;
+    opacity: 1;
+    pointer-events: none;
+    border-radius: 0.5rem;
+}
+
+.propagation-content .demo .grand-parent {
+    background-color: var(--column-background-color1);
+    color: var(--column-text-color1);
+}
+
+.propagation-content .demo .parent {
+    background-color: var(--column-background-color2);
+    color: var(--column-text-color2);
+}
+
+.propagation-content .demo .child {
+    background-color: var(--column-background-color3);
+    color: var(--column-text-color3);
 }

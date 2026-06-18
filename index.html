@@ -89,7 +89,10 @@
         </section>
         <aside class="filter-dialog">
             <form class="filter-content" name="filters-form">
-                <h2>Filters</h2>
+                <div class="modal-header">
+                    <h2>Filters</h2>
+                    <button id="filter-modal-close-btn" class="modal-close-btn">×</button>
+                </div>
                 <h5>Status</h5>
                 <select name="filter-task-category" id="filter-task-category">
                     <option value="">All</option>
@@ -108,7 +111,7 @@
             <div class="pipeline-modal-content">
                 <div class="modal-header">
                     <h2>Browser Rendering Pipeline</h2>
-                    <button id="pipeline-modal-close-btn">×</button>
+                    <button id="pipeline-modal-close-btn" class="modal-close-btn">×</button>
                 </div>
 
                 <div class="explanation">
@@ -146,13 +149,34 @@
                     <div class="step step6" data-id="step-paint">Paint</div>
                     <i class="step-arrow-6 ri-arrow-down-long-line"></i>
                     <div class="step step7" data-id="step-web-page">Web Page</div>
-
-
-
-
                 </div>
             </div>
         </section>
+
+        <aside class="propagation-dialog">
+            <div class="propagation-content" name="filters-form">
+                <div class="modal-header">
+                    <h2>Event Propagation</h2>
+                    <button id="propagation-modal-close-btn" class="modal-close-btn">×</button>
+                </div>
+                <p class="prop-flow">Tap on buttons to show propagation here...</p>
+                <div class="demo">
+                    <div class="grand-parent propagate-element">
+                        Grand Parent
+                        <div class="parent propagate-element">
+                            Parent
+                            <div class="child propagate-element">
+                                Child
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button id="bubbling-btn">Event Bubbling</button>
+                    <button id="capturing-btn">Event Capturing</button>
+                </div>
+            </div>
+        </aside>
     </main>
     <script src="script.js" defer></script>
 </body>

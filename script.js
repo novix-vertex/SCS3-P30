@@ -4,7 +4,8 @@ const filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
 const addBtn = document.querySelector(".header-right #add-todo-task-btn");
 const clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
 const changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
-const pipelineThemeBtn = document.querySelector(".header-right #pipeline-demo-btn");
+const pipelineBtn = document.querySelector(".header-right #pipeline-demo-btn");
+const propagationeBtn = document.querySelector(".header-right #event-propagation-btn");
 
 const searchInput = document.querySelector("#search");
 
@@ -31,6 +32,8 @@ const totalDoneTaskList = document.querySelector(".column3 .heading .head .total
 const filterDialog = document.querySelector(".filter-dialog");
 const filterForm = document.querySelector(".filter-content");
 const filterTaskCategory = document.querySelector("#filter-task-category");
+const filterModelCloseBtn = document.querySelector("#filter-modal-close-btn");
+
 
 const pipelineDialog = document.querySelector(".pipeline-modal");
 const pipelineContent = document.querySelector(".pipeline-modal-content");
@@ -39,6 +42,19 @@ const pipelineModelCloseBtn = document.querySelector("#pipeline-modal-close-btn"
 const pipelineStep = document.querySelector(".pipeline");
 const pipelineStepHeading = document.querySelector(".explanation h3");
 const pipelineStepDesc = document.querySelector(".explanation p");
+
+const propagationDialog = document.querySelector(".propagation-dialog");
+const propagationContent = document.querySelector(".propagation-content");
+const propagationModelCloseBtn = document.querySelector("#propagation-modal-close-btn");
+
+
+const propagationDemo = document.querySelector(".propagation-dialog .propagation-content .demo");
+const bubblingBtn = document.querySelector("#bubbling-btn");
+const capturingBtn = document.querySelector("#capturing-btn");
+
+const grandParent = document.querySelector(".grand-parent");
+const parent = document.querySelector(".parent");
+const child = document.querySelector(".child");
 
 const renderPipelineArr = [
     {
@@ -120,14 +136,78 @@ pipelineStep.addEventListener("click", (e) => {
     }
 });
 
+propagationeBtn.addEventListener("click", () => {
+    propagationDialog.classList.add("show");
+});
 
-pipelineThemeBtn.addEventListener("click", () => {
+let grandParentHandler;
+let parentHandler;
+let childHandler;
+
+function setupPropagation(capturing) {
+    let propFlow =document.querySelector(".prop-flow");
+    propFlow.innerHTML="";
+    console.log("listener", capturing);
+    if (grandParentHandler) {
+        console.log("listener removed");
+        grandParent.removeEventListener("click", grandParentHandler, capturing);
+        parent.removeEventListener("click", parentHandler, capturing);
+        child.removeEventListener("click", childHandler, capturing);
+
+        grandParent.removeEventListener("click", grandParentHandler, !capturing);
+        parent.removeEventListener("click", parentHandler, !capturing);
+        child.removeEventListener("click", childHandler, !capturing);
+    }
+
+    grandParentHandler = function () {
+        console.log("grand parent");
+        propFlow.innerHTML+="-->Grand Parent";
+    };
+    
+    parentHandler = function () {
+        console.log("parent");
+        propFlow.innerHTML+="-->Parent";
+    };
+    
+    childHandler = function () {
+        console.log("child");
+        propFlow.innerHTML+="-->Child";
+    };
+
+    grandParent.addEventListener("click", grandParentHandler, capturing);
+    parent.addEventListener("click", parentHandler, capturing);
+    child.addEventListener("click", childHandler, capturing);
+}
+
+
+bubblingBtn.addEventListener("click", () => {
+    console.log("bubbling", "clicked");
+    setupPropagation(false);
+    child.click();
+});
+capturingBtn.addEventListener("click", () => {
+    console.log("capturing", "clicked");
+    setupPropagation(true);
+    child.click();
+});
+
+
+pipelineBtn.addEventListener("click", () => {
     pipelineDialog.classList.add("show");
 });
 
 pipelineModelCloseBtn.addEventListener("click", () => {
     pipelineDialog.classList.remove("show");
+});
+filterModelCloseBtn.addEventListener("click", () => {
+    filterDialog.classList.remove("show");
 })
+
+propagationModelCloseBtn.addEventListener("click", () => {
+    propagationDialog.classList.remove("show");
+})
+
+
 
 addBtn.addEventListener("click", () => {
     modal.classList.add("show");
