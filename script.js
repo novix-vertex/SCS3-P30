@@ -1,11 +1,14 @@
 const body = document.body;
 
+const menuToggle = document.getElementById("menu-toggle");
+const menuDropdown = document.getElementById("menu-dropdown");
+
 const filterBtn = document.querySelector(".header-right #filter-todo-task-btn");
 const addBtn = document.querySelector(".header-right #add-todo-task-btn");
 const clearAllBtn = document.querySelector(".header-right #clear-all-todo-task-btn");
 const changeThemeBtn = document.querySelector(".header-right #change-theme-btn");
 const pipelineBtn = document.querySelector(".header-right #pipeline-demo-btn");
-const propagationeBtn = document.querySelector(".header-right #event-propagation-btn");
+const propagationBtn = document.querySelector(".header-right #event-propagation-btn");
 const attrPropDemoBtn = document.querySelector(".header-right #attr-prop-demo-btn");
 
 const searchInput = document.querySelector("#search");
@@ -127,6 +130,51 @@ let cardId = null;
 
 let tasks = [];
 
+menuToggle.addEventListener("click", () => {
+    menuDropdown.classList.toggle("active");
+});
+
+attrPropDemoBtn.addEventListener("click", () => {
+    attrPropDemoDialog.classList.add("show");
+    menuDropdown.classList.remove("active");
+});
+
+addBtn.addEventListener("click", () => {
+    modal.classList.add("show");
+    menuDropdown.classList.remove("active");
+});
+
+filterBtn.addEventListener("click", () => {
+    filterDialog.classList.add("show");
+    menuDropdown.classList.remove("active");
+});
+
+clearAllBtn.addEventListener("click", () => {
+    menuDropdown.classList.remove("active");
+    clearTasks();
+});
+
+changeThemeBtn.addEventListener("click", () => {
+    menuDropdown.classList.remove("active");
+    changeTheme();
+});
+
+searchInput.addEventListener("input", (e) => {
+    performSearch();
+});
+
+
+propagationBtn.addEventListener("click", () => {
+    propagationDialog.classList.add("show");
+    menuDropdown.classList.remove("active");
+});
+
+pipelineBtn.addEventListener("click", () => {
+    pipelineDialog.classList.add("show");
+    menuDropdown.classList.remove("active");
+});
+
+
 //Event propagation used here too.
 pipelineStep.addEventListener("click", (e) => {
     console.log("e-target", e.target);
@@ -142,10 +190,6 @@ pipelineStep.addEventListener("click", (e) => {
         pipelineStepHeading.textContent = step.title;
         pipelineStepDesc.textContent = step.description;
     }
-});
-
-propagationeBtn.addEventListener("click", () => {
-    propagationDialog.classList.add("show");
 });
 
 let grandParentHandler;
@@ -200,10 +244,6 @@ capturingBtn.addEventListener("click", () => {
 });
 
 
-pipelineBtn.addEventListener("click", () => {
-    pipelineDialog.classList.add("show");
-});
-
 pipelineModelCloseBtn.addEventListener("click", () => {
     pipelineDialog.classList.remove("show");
 });
@@ -219,28 +259,15 @@ attrPropDemoModelCloseBtn.addEventListener("click", () => {
     attrPropDemoDialog.classList.remove("show");
 });
 
-
-attrPropDemoBtn.addEventListener("click", () => {
-    attrPropDemoDialog.classList.add("show");
-});
-
-addBtn.addEventListener("click", () => {
-    modal.classList.add("show");
-});
-
-filterBtn.addEventListener("click", () => {
-    filterDialog.classList.add("show");
-});
-
-clearAllBtn.addEventListener("click", () => {
+function clearTasks() {
     if (confirm("Are you sure, you want to clear all the tasks? This action can not be undone!")) {
         tasks = [];
         saveTasks();
         showTasks();
     }
-});
+}
 
-changeThemeBtn.addEventListener("click", () => {
+function changeTheme() {
     body.classList.toggle("dark");
 
     if (!document.body.hasAttribute("data-theme")) {
@@ -248,11 +275,7 @@ changeThemeBtn.addEventListener("click", () => {
     } else {
         document.body.removeAttribute("data-theme");
     }
-});
-
-searchInput.addEventListener("input", (e) => {
-    performSearch();
-});
+}
 
 function performSearch() {
     console.log("using .value", searchInput.value)
@@ -425,12 +448,12 @@ function createCard(task, idx) {
     taskMetaDiv.setAttribute("class", "task-meta");
 
     let taskIdInfo = document.createElement("h5");
-    taskIdInfo.setAttribute("class","task-id-val");
+    taskIdInfo.setAttribute("class", "task-id-val");
     taskIdInfo.textContent = task.tid;
-    
+
     let taskCreationInfo = document.createElement("h5");
-    taskCreationInfo.setAttribute("class","task-created-at-val");
-    taskCreationInfo.textContent = "Created At: "+formatDate(new Date(task.createdAt));
+    taskCreationInfo.setAttribute("class", "task-created-at-val");
+    taskCreationInfo.textContent = "Created At: " + formatDate(new Date(task.createdAt));
 
     let taskDesc = document.createElement("p");
     taskDesc.setAttribute("class", "description");
@@ -459,7 +482,7 @@ function createCard(task, idx) {
         cardActions.append(editIcon, deleteIcon);
     }
 
-    taskMetaDiv.append(taskIdInfo,taskTitle);
+    taskMetaDiv.append(taskIdInfo, taskTitle);
 
 }
 

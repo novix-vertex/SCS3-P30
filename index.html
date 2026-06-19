@@ -15,25 +15,31 @@
             <i class="ri-trello-fill"></i>
             <h3>Trello</h3>
         </div>
+
         <div class="header-center">
-            <i class="ri-search-line"></i>
-            <input type="search" id="search" placeholder="Search...">
+            <i class="ri-search-line search-icon"></i>
+            <input type="search" id="search" placeholder="Search tasks..." />
         </div>
 
         <div class="header-right">
-            
-            <button id="add-todo-task-btn">+ Add Task</button>
-            
-            <button class="data-alter-btn" id="filter-todo-task-btn">Filter</button>
-            <button class="data-alter-btn" id="clear-all-todo-task-btn">Clear All</button>
-            
-            <button id="change-theme-btn">Change Theme</button>
-           
-            <button class="demo-btn" id="attr-prop-demo-btn">Attr vs Prop Demo</button>
-            <button class="demo-btn" id="event-propagation-btn">Event Progagation</button>
-            <button class="demo-btn" id="pipeline-demo-btn">Pipeling Demo</button>
-        </div>
+            <button id="add-todo-task-btn" class="primary-btn">
+                + Add Task
+            </button>
 
+            <button id="menu-toggle" class="menu-btn">
+                ☰
+            </button>
+
+            <div class="menu-dropdown" id="menu-dropdown">
+                <button id="filter-todo-task-btn">Filter Tasks</button>
+                <button id="clear-all-todo-task-btn">Clear All</button>
+                <button id="change-theme-btn">Change Theme</button>
+                <hr>
+                <button id="attr-prop-demo-btn">Attr vs Prop Demo</button>
+                <button id="event-propagation-btn">Event Propagation</button>
+                <button id="pipeline-demo-btn">Pipeline Demo</button>
+            </div>
+        </div>
     </header>
     <main>
         <section class="column column1">
