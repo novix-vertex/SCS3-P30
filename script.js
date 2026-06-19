@@ -128,7 +128,7 @@ const renderPipelineArr = [
 let dragCardId = null;
 let cardId = null;
 
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 menuToggle.addEventListener("click", () => {
     menuDropdown.classList.toggle("active");
@@ -371,8 +371,6 @@ cancelTaskBtn.addEventListener("click", () => {
 });
 
 function showTasks(list = null) {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-
     let tasklist = null;
     if (list === null) {
         tasklist = tasks;
