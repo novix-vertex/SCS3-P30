@@ -130,6 +130,10 @@ let cardId = null;
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+let grandParentHandler;
+let parentHandler;
+let childHandler;
+
 menuToggle.addEventListener("click", () => {
     menuDropdown.classList.toggle("active");
 });
@@ -191,10 +195,6 @@ pipelineStep.addEventListener("click", (e) => {
         pipelineStepDesc.textContent = step.description;
     }
 });
-
-let grandParentHandler;
-let parentHandler;
-let childHandler;
 
 function setupPropagation(capturing) {
     let propFlow = document.querySelector(".prop-flow");
