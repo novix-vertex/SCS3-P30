@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trello</title>
+    <title>Orbit</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +13,7 @@
     <header>
         <div class="header-left">
             <i class="ri-trello-fill"></i>
-            <h3>Trello</h3>
+            <h3>Orbit</h3>
         </div>
 
         <div class="header-center">
@@ -80,9 +80,9 @@
                 <input type="text" id="task-title" placeholder="Task Title" required>
                 <textarea id="task-description" placeholder="Task Description" required></textarea>
                 <select name="category" id="task-category">
-                    <option value="office">Office</option>
-                    <option value="personal">Personal</option>
-                    <option value="learning">Learning</option>
+                    <option value="task">Task</option>
+                    <option value="bug">Bug</option>
+                    <option value="improvement">Improvement</option>
                     <option value="other">Other</option>
                 </select>
                 <select name="status" id="task-status">
@@ -103,12 +103,12 @@
                     <h2>Filters</h2>
                     <button id="filter-modal-close-btn" class="modal-close-btn">×</button>
                 </div>
-                <h5>Status</h5>
+                <h5>Category</h5>
                 <select name="filter-task-category" id="filter-task-category">
                     <option value="">All</option>
-                    <option value="office">Office</option>
-                    <option value="personal">Personal</option>
-                    <option value="learning">Learning</option>
+                    <option value="task">Task</option>
+                    <option value="bug">Bug</option>
+                    <option value="improvement">Improvement</option>
                     <option value="other">Other</option>
                 </select>
                 <div class="actions">

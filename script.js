@@ -181,12 +181,9 @@ pipelineBtn.addEventListener("click", () => {
 
 //Event propagation used here too.
 pipelineStep.addEventListener("click", (e) => {
-    console.log("e-target", e.target);
     step = renderPipelineArr.find((item) => {
-        console.log("id", e.target.dataset.id);
         return item.id === e.target.dataset.id;
     });
-    console.log(step);
     if (!step) {
         pipelineStepHeading.textContent = "Simple Explanation";
         pipelineStepDesc.textContent = "When you open a website, the browser first reads HTML and CSS, then builds structure and styles, and finally shows the page on screen.";
@@ -199,9 +196,7 @@ pipelineStep.addEventListener("click", (e) => {
 function setupPropagation(capturing) {
     let propFlow = document.querySelector(".prop-flow");
     propFlow.innerHTML = "";
-    console.log("listener", capturing);
     if (grandParentHandler) {
-        console.log("listener removed");
         grandParent.removeEventListener("click", grandParentHandler, capturing);
         parent.removeEventListener("click", parentHandler, capturing);
         child.removeEventListener("click", childHandler, capturing);
@@ -212,17 +207,14 @@ function setupPropagation(capturing) {
     }
 
     grandParentHandler = function () {
-        console.log("grand parent");
         propFlow.innerHTML += "-->Grand Parent";
     };
 
     parentHandler = function () {
-        console.log("parent");
         propFlow.innerHTML += "-->Parent";
     };
 
     childHandler = function () {
-        console.log("child");
         propFlow.innerHTML += "-->Child";
     };
 
@@ -233,12 +225,10 @@ function setupPropagation(capturing) {
 
 
 bubblingBtn.addEventListener("click", () => {
-    console.log("bubbling", "clicked");
     setupPropagation(false);
     child.click();
 });
 capturingBtn.addEventListener("click", () => {
-    console.log("capturing", "clicked");
     setupPropagation(true);
     child.click();
 });
@@ -322,7 +312,7 @@ form.addEventListener("submit", (e) => {
         if (task) {
             task.title = title;
             task.description = description;
-            task.category = category; //can be one of these - office, personal, learning, other
+            task.category = category; //can be one of these - task, bug, improvement, other
             task.status = status; //can be one of these - todo, doing, done
             task.tag = (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"); //can be one of these - pending, in progress, completed
 
@@ -331,7 +321,7 @@ form.addEventListener("submit", (e) => {
             taskTitle.value = "";
             taskDescription.value = "";
             taskStatus.value = "todo";
-            taskCategory.value = "office";
+            taskCategory.value = "task";
             cardId = null;
             addTaskBtn.textContent = "Add Task";
             modalHeading.textContent = "Add Task";
@@ -346,7 +336,7 @@ form.addEventListener("submit", (e) => {
         "title": title,
         "description": description,
         "status": status, //can be one of these - todo, doing, done
-        "category": category, //can be one of these - office, personal, learning, other
+        "category": category, //can be one of these - task, bug, improvement, other
         "tag": (status == "todo" ? "pending" : (status == "doing") ? "In Progress" : "Completed"), //can be one of these - pending, in progress, completed
         "createdAt": Date.now()
     }
@@ -364,7 +354,7 @@ cancelTaskBtn.addEventListener("click", () => {
     taskTitle.value = "";
     taskDescription.value = "";
     taskStatus.value = "todo";
-    taskCategory.value = "office";
+    taskCategory.value = "task";
     cardId = null;
     addTaskBtn.textContent = "Add Task";
     modalHeading.textContent = "Add Task";
